@@ -1,0 +1,14 @@
+.image-bg {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 700px;
+    position: relative;
+    margin : 0 auto;
+    border-radius: 10px;
+    background-image: url('../assets/soccer_field.png');
+    background-size :cover;
+    background-position : center;
+}

@@ -1,0 +1,1 @@
+export const category = ['경기 분석' , '홈 스쿼드', '어웨이 스쿼드']

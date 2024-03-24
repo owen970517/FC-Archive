@@ -1,0 +1,507 @@
+[
+    {
+        "seasonId" : 100,
+        "className" : "ICONTM (ICON The Moment)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icontm.png"
+    },
+    {
+        "seasonId" : 110,
+        "className" : "ICONTM_B (ICON The Moment Bound)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icontm_b.png"
+    },
+    {
+        "seasonId" : 101,
+        "className" : "ICON (ICON)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icon.png"
+    },
+    {
+        "seasonId" : 802,
+        "className" : "DC (Decade)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/dc.png"
+    },
+    {
+        "seasonId" : 801,
+        "className" : "JVA (Juventus Ambassador)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/jva.png"
+    },
+    {
+        "seasonId" : 290,
+        "className" : "FCA (FCAmbassador)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/fca.png"
+    },
+    {
+        "seasonId" : 291,
+        "className" : "23HW (23 Hard Worker)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23hw.png"
+    },
+    {
+        "seasonId" : 289,
+        "className" : "CC (CenturyClub)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/cc.png"
+    },
+    {
+        "seasonId" : 283,
+        "className" : "HG (Home Grown)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/hg.png"
+    },
+    {
+        "seasonId" : 284,
+        "className" : "RTN (Returnees)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/rtn.png"
+    },
+    {
+        "seasonId" : 272,
+        "className" : "BWC (Best of World Cup)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/bwc.png"
+    },
+    {
+        "seasonId" : 273,
+        "className" : "WC22 (World Cup 2022)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/wc22.png"
+    },
+    {
+        "seasonId" : 274,
+        "className" : "RMCF (Real Madrid Ambassador)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/rmcf.png"
+    },
+    {
+        "seasonId" : 270,
+        "className" : "SPL (Spotlight)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/spl.png"
+    },
+    {
+        "seasonId" : 268,
+        "className" : "LN (LEGENDARY NUMBERS)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/ln.png"
+    },
+    {
+        "seasonId" : 265,
+        "className" : "LOL (LEGEND OF THE LOAN)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/lol.png"
+    },
+    {
+        "seasonId" : 264,
+        "className" : "FA (FREE AGENT)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/fa.png"
+    },
+    {
+        "seasonId" : 811,
+        "className" : "24HR (24 Heroes)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24hr.png"
+    },
+    {
+        "seasonId" : 281,
+        "className" : "23HR (23 Heroes)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23hr.png"
+    },
+    {
+        "seasonId" : 261,
+        "className" : "22HR (22 Heroes)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22hr.png"
+    },
+    {
+        "seasonId" : 256,
+        "className" : "BTB (Back to Back)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/btb.png"
+    },
+    {
+        "seasonId" : 252,
+        "className" : "CAP (Captain)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/cap.png"
+    },
+    {
+        "seasonId" : 251,
+        "className" : "EBS (European Best Stars)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/ebs.png"
+    },
+    {
+        "seasonId" : 253,
+        "className" : "BOE21 (Best of Europe 21)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/boe21.png"
+    },
+    {
+        "seasonId" : 249,
+        "className" : "NTG (Nostalgia)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/ngt.png"
+    },
+    {
+        "seasonId" : 246,
+        "className" : "UP (Unsung Players)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/up.png"
+    },
+    {
+        "seasonId" : 237,
+        "className" : "MC (Multi-League Champions)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/mc.png"
+    },
+    {
+        "seasonId" : 231,
+        "className" : "VTR (Veteran)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/vtr.png"
+    },
+    {
+        "seasonId" : 233,
+        "className" : "MOG (Moments Of Glory)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/mog.png"
+    },
+    {
+        "seasonId" : 254,
+        "className" : "CFA (Chelsea FC Ambassador)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/cfa.png"
+    },
+    {
+        "seasonId" : 236,
+        "className" : "LA (Liverpool Ambassador)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/la.png"
+    },
+    {
+        "seasonId" : 804,
+        "className" : "23NG (23 NEW GENERATION)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23ng.png"
+    },
+    {
+        "seasonId" : 276,
+        "className" : "22NG (22 NEW GENERATION)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22ng.png"
+    },
+    {
+        "seasonId" : 262,
+        "className" : "21NG (21 NEW GENERATION)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21ng.png"
+    },
+    {
+        "seasonId" : 238,
+        "className" : "20NG (20 NEW GENERATION)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20ng.png"
+    },
+    {
+        "seasonId" : 219,
+        "className" : "19NG (19 NEW GENERATION)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19ng.png"
+    },
+    {
+        "seasonId" : 218,
+        "className" : "OTW (Ones To Watch)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/otw.png"
+    },
+    {
+        "seasonId" : 217,
+        "className" : "COC (Competitor Of Continents)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/coc.png"
+    },
+    {
+        "seasonId" : 216,
+        "className" : "HOT (Heroes Of the Team)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/hot.png"
+    },
+    {
+        "seasonId" : 214,
+        "className" : "TC (Tournament Champions)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/tc.png"
+    },
+    {
+        "seasonId" : 213,
+        "className" : "Man City ICON (Man City ICON)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/mcicon.png"
+    },
+    {
+        "seasonId" : 210,
+        "className" : "GR (Golden Rookies)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/gr.png"
+    },
+    {
+        "seasonId" : 207,
+        "className" : "TT (Top Transfer)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/tt.png"
+    },
+    {
+        "seasonId" : 206,
+        "className" : "TB (Tournament Best)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/tb.png"
+    },
+    {
+        "seasonId" : 202,
+        "className" : "TKI (Team Korea Icon)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/tki.png"
+    },
+    {
+        "seasonId" : 201,
+        "className" : "NHD (National Hero Debut)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/nhd.png"
+    },
+    {
+        "seasonId" : 807,
+        "className" : "24 TOTY (24 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24toty.png"
+    },
+    {
+        "seasonId" : 808,
+        "className" : "24 TOTN (24 Team Of The Nominated)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24totn.png"
+    },
+    {
+        "seasonId" : 278,
+        "className" : "23 TOTY (23 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23toty.png"
+    },
+    {
+        "seasonId" : 279,
+        "className" : "23 TOTN (23 Team Of The Nominated)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23totn.png"
+    },
+    {
+        "seasonId" : 258,
+        "className" : "22 TOTY (22 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22toty.png"
+    },
+    {
+        "seasonId" : 259,
+        "className" : "22 TOTN (22 Team Of The Nominated)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22totn.png"
+    },
+    {
+        "seasonId" : 240,
+        "className" : "21 TOTY (21 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21toty.png"
+    },
+    {
+        "seasonId" : 241,
+        "className" : "21 TOTN (21 Team Of The Nominated)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21totn.png"
+    },
+    {
+        "seasonId" : 220,
+        "className" : "20 TOTY (20 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20toty.png"
+    },
+    {
+        "seasonId" : 222,
+        "className" : "20 TOTN (20 Team Of The Nominated)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20totn.png"
+    },
+    {
+        "seasonId" : 211,
+        "className" : "19 TOTY (19 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19toty.png"
+    },
+    {
+        "seasonId" : 212,
+        "className" : "18 TOTY (18 Team Of The Year)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/18toty.png"
+    },
+    {
+        "seasonId" : 287,
+        "className" : "23 TOTS (23 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23tots.png"
+    },
+    {
+        "seasonId" : 267,
+        "className" : "22 TOTS (22 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22tots.png"
+    },
+    {
+        "seasonId" : 250,
+        "className" : "21 TOTS (21 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21tots.png"
+    },
+    {
+        "seasonId" : 230,
+        "className" : "20 TOTS (20 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20tots.png"
+    },
+    {
+        "seasonId" : 215,
+        "className" : "19 TOTS (19 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19tots.png"
+    },
+    {
+        "seasonId" : 810,
+        "className" : "23 UCL (23 UEFA Champions League)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23ucl.png"
+    },
+    {
+        "seasonId" : 280,
+        "className" : "22 UCL (22 UEFA Champions League)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22ucl.png"
+    },
+    {
+        "seasonId" : 260,
+        "className" : "21 UCL (21 UEFA Champions League)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21ucl.png"
+    },
+    {
+        "seasonId" : 242,
+        "className" : "20 UCL (20 UEFA Champions League)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20ucl.png"
+    },
+    {
+        "seasonId" : 221,
+        "className" : "19 UCL (19 UEFA Champions League)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19ucl.png"
+    },
+    {
+        "seasonId" : 234,
+        "className" : "LH (Loyal Heroes)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/lh.png"
+    },
+    {
+        "seasonId" : 225,
+        "className" : "TKL (TEAM K LEAGUE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/tkl.png"
+    },
+    {
+        "seasonId" : 806,
+        "className" : "23 KFA (23 KFA)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23kfa.png"
+    },
+    {
+        "seasonId" : 293,
+        "className" : "22 KFA (22 KFA)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22kfa.png"
+    },
+    {
+        "seasonId" : 294,
+        "className" : "21 KFA (21 KFA)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21kfa.png"
+    },
+    {
+        "seasonId" : 295,
+        "className" : "19 KFA (19 KFA)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/2019kfa.png"
+    },
+    {
+        "seasonId" : 298,
+        "className" : "18 KFA (18 KFA)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/kfa.png"
+    },
+    {
+        "seasonId" : 297,
+        "className" : "MCFC (17-18 Man City Champions)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/mcfc.png"
+    },
+    {
+        "seasonId" : 247,
+        "className" : "2012 KH (2012 KH)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/2012kh.png"
+    },
+    {
+        "seasonId" : 512,
+        "className" : "23KLeague (23KLeague)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23kl.png"
+    },
+    {
+        "seasonId" : 510,
+        "className" : "22KLeague (22KLeague)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22kl.png"
+    },
+    {
+        "seasonId" : 507,
+        "className" : "21KLeague (21KLeague)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21kl.png"
+    },
+    {
+        "seasonId" : 504,
+        "className" : "20KLeague (20KLeague)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20kl.png"
+    },
+    {
+        "seasonId" : 805,
+        "className" : "23KLB (23 K-League Best)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23klb.png"
+    },
+    {
+        "seasonId" : 277,
+        "className" : "22KLB (22 K-League Best)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22klb.png"
+    },
+    {
+        "seasonId" : 257,
+        "className" : "21KLB (21 K-League Best)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21klb.png"
+    },
+    {
+        "seasonId" : 239,
+        "className" : "20KLB (20 K-League Best)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20klb.png"
+    },
+    {
+        "seasonId" : 513,
+        "className" : "23 PL (23 Premium Live)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23pla.png"
+    },
+    {
+        "seasonId" : 511,
+        "className" : "22 PL (22 Premium Live)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22pla.png"
+    },
+    {
+        "seasonId" : 508,
+        "className" : "21 PL (21 Premium Live)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21pla.png"
+    },
+    {
+        "seasonId" : 506,
+        "className" : "20 PL (20 Premium Live)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20pla.png"
+    },
+    {
+        "seasonId" : 503,
+        "className" : "19 PLC–S (19 Premium Live Spring)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19pls.png"
+    },
+    {
+        "seasonId" : 502,
+        "className" : "19 PLC–A (19 Premium Live Autumn)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19pla.png"
+    },
+    {
+        "seasonId" : 501,
+        "className" : "18 PLC–S (18 Premium Live Spring)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/18pls.png"
+    },
+    {
+        "seasonId" : 500,
+        "className" : "18 PLC–A (18 Premium Live Autumn)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/plc.png"
+    },
+    {
+        "seasonId" : 300,
+        "className" : "23 LIVE (23 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/live.png"
+    },
+    {
+        "seasonId" : 322,
+        "className" : "22 LIVE (22 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22.png"
+    },
+    {
+        "seasonId" : 321,
+        "className" : "21 LIVE (21 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21.png"
+    },
+    {
+        "seasonId" : 320,
+        "className" : "20 LIVE (20 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20.png"
+    },
+    {
+        "seasonId" : 319,
+        "className" : "19 LIVE (19 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19.png"
+    },
+    {
+        "seasonId" : 318,
+        "className" : "18 LIVE (18 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/18.png"
+    },
+    {
+        "seasonId" : 317,
+        "className" : "17 LIVE (17 LIVE)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/17.png"
+    },
+    {
+        "seasonId" : 812,
+        "className" : "LKI (LKI)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/lki.png"
+    }
+]
