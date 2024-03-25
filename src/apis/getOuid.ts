@@ -1,6 +1,6 @@
 export const fetchUserId = async (nickname:string) => {
     try {
-      const urlString = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickname}`;
+      const urlString = `https://open.api.nexon.com/fconline/v1/id?nickname=${encodeURIComponent(nickname)}`;
       const response = await fetch(urlString, {
         headers: {
           "x-nxopen-api-key": process.env.REACT_APP_API_KEY!,
