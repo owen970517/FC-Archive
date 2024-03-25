@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { IForm } from '../types/form';
 import { userActions } from '../store/userSlice';
@@ -7,49 +7,25 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchIcon from '../assets/SearchIcon';
 import { matchActions } from '../store/matchSlice';
-import LatestName from './LatestName';
+import LatestSearched from './LatestSearched';
 import useKeyboard from '../hooks/useKeyboard';
+import { fetchUserId } from '../apis/getOuid';
+import { RootState } from '../store/store';
 
 const UserInput = () => {
   const dispatch = useDispatch();
+  const {isFocus} = useSelector((state:RootState) => state.matches)
   const { register, handleSubmit, watch, setValue } = useForm<IForm>();
   const user = watch('user');
   const nav = useNavigate();
-  const [isFocus,setIsFocus] = useState(false);
   const prevSearched:string[] = JSON.parse(localStorage.getItem('searched') || '[]')
   const {keyBoardIdx,onKeydown,initIndex} = useKeyboard(prevSearched)
 
-  useEffect(() => {
-    if (keyBoardIdx !== null) {
-      const selectedName = prevSearched[keyBoardIdx];
-      setValue('user', selectedName);
-    } else {
-      setValue('user' , '')
-    }
-  }, [keyBoardIdx]);
-
-  const fetchUserId = async (nickname:string) => {
-    try {
-      const urlString = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickname}`;
-      const response = await fetch(urlString, {
-        headers: {
-          "x-nxopen-api-key": process.env.REACT_APP_API_KEY ?? "",
-        }
-      });
-
-      if (!response.ok) throw new Error('네트워크 응답이 올바르지 않습니다.');
-
-      const data = await response.json();
-      dispatch(userActions.setOuid(data.ouid));
-      nav(`/search?nickname=${nickname}`);
-    } catch (error) {
-      console.error('사용자 ID를 가져오는 데 실패:', error);
-    }
-  };
-
   const onSubmit = async () => {
     dispatch(matchActions.initState());
-    await fetchUserId(user);
+    const ouid = await fetchUserId(user);
+    dispatch(userActions.setOuid(ouid));
+    nav(`/search?nickname=${user}`);
     setValue('user', '');
     initIndex();
     const updatedData = prevSearched.filter((data:string) => data !== user);
@@ -63,6 +39,15 @@ const UserInput = () => {
   const handleInput = (e: React.KeyboardEvent) => {
     onKeydown(e)
   }
+  useEffect(() => {
+    if (keyBoardIdx !== null) {
+      const selectedName = prevSearched[keyBoardIdx];
+      setValue('user', selectedName);
+    } else {
+      setValue('user' , '')
+    }
+  }, [keyBoardIdx]);
+
   useEffect(() => {
     if (!isFocus) {
       initIndex();
@@ -78,15 +63,15 @@ const UserInput = () => {
           type='text' 
           autoComplete='off' 
           placeholder='구단주 명을 입력하시오'
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
+          onFocus={() => dispatch(matchActions.setIsFocus(true))}
+          onBlur={() => dispatch(matchActions.setIsFocus(false))}
           onKeyDown={(e) => handleInput(e)}
         />
         <button type='submit'>
           <SearchIcon size={21}/>
         </button>
       </SearchBar>
-      {isFocus && <LatestName nowIdx={keyBoardIdx!} fetchUserId={fetchUserId}/>}
+      {isFocus && <LatestSearched nowIdx={keyBoardIdx!}/>}
     </SearchContainer>
   )
 }

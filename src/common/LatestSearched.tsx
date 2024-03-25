@@ -2,23 +2,34 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components'
 import { matchActions } from '../store/matchSlice';
+import { fetchUserId } from '../apis/getOuid';
+import { useNavigate } from 'react-router-dom';
+import { userActions } from '../store/userSlice';
 
-const LatestName = ({nowIdx, fetchUserId} : {nowIdx:number, fetchUserId: (nickname: string) => Promise<void> }) => {
+const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
   const dispatch = useDispatch();
-  const [latestUser, setLatestUser] = useState(JSON.parse(localStorage.getItem('searched') || '[]'));
+  const nav = useNavigate();
+  const getLatestUsers = () => JSON.parse(localStorage.getItem('searched') || '[]');
+  const [latestUser, setLatestUser] = useState(getLatestUsers());
+
   useEffect(() => {
-    setLatestUser(JSON.parse(localStorage.getItem('searched') || '[]'));
+    setLatestUser(getLatestUsers());
   }, []);
 
-  const clickUser = (data:string) => {
-    fetchUserId(data)
+  const handleClickUser = async (nickname:string) => {
     dispatch(matchActions.initState());
+    const ouid = await fetchUserId(nickname)
+    dispatch(userActions.setOuid(ouid));
+    const latest = latestUser.filter((prev:string) => prev !== nickname)
+    localStorage.setItem('searched',JSON.stringify(latest))
+    setLatestUser(latest)
+    nav(`/search?nickname=${nickname}`);
   }
 
   const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
         const now = e.currentTarget.value
-        const latest = latestUser.filter((data:string) => data !== now)
+        const latest = latestUser.filter((nickname:string) => nickname !== now)
         localStorage.setItem('searched',JSON.stringify(latest))
         setLatestUser(latest)
    }
@@ -27,10 +38,10 @@ const LatestName = ({nowIdx, fetchUserId} : {nowIdx:number, fetchUserId: (nickna
     <LatestContainer>
         <SectionTitle>최근 검색</SectionTitle>
         {latestUser.length > 0 ?
-            latestUser.map((data:string,idx:number) => 
-                <LatestItem key={idx} className={nowIdx === idx ? 'selected' : ''} onMouseDown={() => clickUser(data)}>
-                    <p>{data}</p>
-                    <DeleteBtn value={data} onMouseDown={(e) => deleteItem(e)}>❌</DeleteBtn>
+            latestUser.map((nickname:string,idx:number) => 
+                <LatestItem key={idx} className={nowIdx === idx ? 'selected' : ''} onMouseDown={() => handleClickUser(nickname)}>
+                    <p>{nickname}</p>
+                    <DeleteBtn value={nickname} onMouseDown={(e) => deleteItem(e)}>❌</DeleteBtn>
                 </LatestItem>
             ) : <Wrapper><h3>최근에 본 구단주가 없습니다.</h3></Wrapper>
         }
@@ -89,4 +100,4 @@ const DeleteBtn = styled.button`
     background: none;
 `
 
-export default LatestName
+export default LatestSearched
