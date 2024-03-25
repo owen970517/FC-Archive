@@ -7,32 +7,35 @@ import { useNavigate } from 'react-router-dom';
 import { userActions } from '../store/userSlice';
 
 const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
-  const dispatch = useDispatch();
-  const nav = useNavigate();
-  const getLatestUsers = () => JSON.parse(localStorage.getItem('searched') || '[]');
-  const [latestUser, setLatestUser] = useState(getLatestUsers());
+    const dispatch = useDispatch();
+    const nav = useNavigate();
+    const getLatestUsers = () => JSON.parse(localStorage.getItem('searched') || '[]');
+    const [latestUser, setLatestUser] = useState(getLatestUsers());
 
-  useEffect(() => {
-    setLatestUser(getLatestUsers());
-  }, []);
+    useEffect(() => {
+        setLatestUser(getLatestUsers());
+    }, []);
 
-  const handleClickUser = async (nickname:string) => {
-    dispatch(matchActions.initState());
-    const ouid = await fetchUserId(nickname)
-    dispatch(userActions.setOuid(ouid));
-    const latest = latestUser.filter((prev:string) => prev !== nickname)
-    localStorage.setItem('searched',JSON.stringify(latest))
-    setLatestUser(latest)
-    nav(`/search?nickname=${nickname}`);
-  }
+    const handleClickUser = async (nickname:string) => {
+        dispatch(matchActions.initState());
+        const ouid = await fetchUserId(nickname)
+        dispatch(userActions.setOuid(ouid));
+        const updatedData = latestUser.filter((data:string) => data !== nickname);
+        updatedData.unshift(nickname);
+        if (updatedData.length > 5) {
+          updatedData.pop();
+        }
+        localStorage.setItem('searched', JSON.stringify(updatedData));
+        nav(`/search?nickname=${nickname}`);
+    }
 
-  const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {
+    const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
         const now = e.currentTarget.value
         const latest = latestUser.filter((nickname:string) => nickname !== now)
         localStorage.setItem('searched',JSON.stringify(latest))
         setLatestUser(latest)
-   }
+    }
 
   return (
     <LatestContainer>
@@ -57,7 +60,7 @@ const LatestContainer = styled.div`
     width : 470px;
     height : 400px;
     border : 1px solid black;
-
+    background-color: #fff;
     h3 {
         padding : 0 20px;
     }
@@ -80,11 +83,10 @@ const LatestItem = styled.div`
     justify-content: space-between;
     padding: 0 20px;
     cursor: pointer;
-    margin-bottom: 10px;
     p {
         font-size: 20px;
     }
-    &.selected {
+    &.selected, &:hover {
         background-color: rgba(128, 128, 128, 0.1);
     }
 `
