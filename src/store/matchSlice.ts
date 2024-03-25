@@ -1,15 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IMatchInfo } from '../types/matchInfo';
 
-const initialMatchState = {
+interface IMatchState {
+    offset: number;
+    isFocus: boolean;
+    isModal: boolean;
+    isLoading: boolean;
+    isLoadingMore: boolean;
+    type: number;
+    allMatchId: string[];
+    allMatchInfo: IMatchInfo[];
+    openList: string[];
+}
+
+const initialMatchState:IMatchState = {
     offset : 0,
+    isFocus : false,
     isModal :false,
     isLoading : true,
     isLoadingMore : false,
     type :50,
-    allMatchId : [] as string[],
-    allMatchInfo : [] as IMatchInfo[],
-    openList : [] as string[]
+    allMatchId : [],
+    allMatchInfo : [],
+    openList : []
 }
 
 const matchSlice = createSlice({
@@ -18,7 +31,9 @@ const matchSlice = createSlice({
     reducers : {
         initState(state) {
             state.offset = 0
+            state.type=50
             state.isLoading = true
+            state.isFocus = false
             state.allMatchId=[]
             state.allMatchInfo=[]
             state.openList = []
@@ -28,6 +43,9 @@ const matchSlice = createSlice({
         },
         setIsLoading(state,action) {
             state.isLoading = action.payload
+        },
+        setIsFocus(state,action) {
+            state.isFocus = action.payload
         },
         setIsLoadingMore(state,action) {
             state.isLoadingMore = action.payload
@@ -42,14 +60,12 @@ const matchSlice = createSlice({
             state.allMatchId = action.payload
         },
         setAllMatchInfo(state, action) {
-            if (action.payload.length > 0) {
-                const newMatchInfo = action.payload.filter((newMatch:IMatchInfo) => 
-                    !state.allMatchInfo.some(existingMatch => 
-                        existingMatch.matchId === newMatch.matchId
-                    )
-                );
-                state.allMatchInfo = [...state.allMatchInfo, ...newMatchInfo];
-            }
+            const newMatchInfo = action.payload.filter((newMatch: IMatchInfo) => 
+                !state.allMatchInfo.some(existingMatch => 
+                    existingMatch.matchId === newMatch.matchId
+                )
+            );
+            state.allMatchInfo = [...state.allMatchInfo, ...newMatchInfo];
         },
         setHandleOpen(state,action) {
             if (state.openList.includes(action.payload)) {
