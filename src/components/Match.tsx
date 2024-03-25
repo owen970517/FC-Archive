@@ -11,6 +11,7 @@ import MatchType from './MatchType';
 import Matches from './Matches';
 import { matchActions } from '../store/matchSlice';
 import LoadingSpinner from '../common/LoadingSpinner';
+import styled from 'styled-components';
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
@@ -39,7 +40,7 @@ const Match = () => {
             }
         };
         fetchMatchId();
-    }, [ouid, type, offset, isLoadingMore,isLoading, dispatch]);
+    }, [ouid, type, offset, isLoadingMore, isLoading, dispatch, allMatchId.length]);
 
     useEffect(() => {
         if (allMatchId.length > 0) {
@@ -52,7 +53,6 @@ const Match = () => {
                     console.error(error);
                 }
             }
-            
             const promises = allMatchId.map(id => fetchMatchDetails(id));
             Promise.all(promises).then(results => {
                 dispatch(matchActions.setAllMatchInfo(results))
@@ -83,10 +83,16 @@ const Match = () => {
                         <h1>기록된 전적이 없습니다.</h1>
                     </>
                 )
-            ) : <h1>존재하지 않는 구단주 입니다.</h1>
+            ) : <Wrapper><h1>존재하지 않는 구단주 입니다.</h1></Wrapper>
         }
     </>
   )
 }
+
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 export default Match

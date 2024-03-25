@@ -10,8 +10,8 @@ const MatchType = () => {
     const dispatch = useDispatch()
     const {type} = useSelector((state:RootState) => state.matches)
     const handleMatchType = (e:React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(matchActions.setType(Number(e.currentTarget.value)))
         dispatch(matchActions.initState());
+        dispatch(matchActions.setType(Number(e.currentTarget.value)))
     }
 
   return (

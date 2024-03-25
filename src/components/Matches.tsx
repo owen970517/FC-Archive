@@ -16,9 +16,8 @@ const Matches = () => {
   const {allMatchInfo,openList,offset,isLoadingMore} = useSelector((state:RootState) => state.matches)
   const {ouid} = useSelector((state:RootState) => state.user)
   const handleLoadMore = () => {
-    dispatch(matchActions.setIsLoading(false))
-    dispatch(matchActions.setIsLoadingMore(true))
     dispatch(matchActions.setOffset(offset+10))
+    dispatch(matchActions.setIsLoadingMore(true))
   }
 
   const handleOpen = (id:string) => {
@@ -26,10 +25,10 @@ const Matches = () => {
   }
 
   const clickNickname = (id:string) => {
-    dispatch(userActions.setOuid(id))
     dispatch(matchActions.initState())
+    dispatch(userActions.setOuid(id))
   }
-  console.log(isLoadingMore)
+
   return (
     <>
       {allMatchInfo.map((match: IMatchInfo, idx) => {
@@ -54,14 +53,13 @@ const Matches = () => {
             </MatchLists>
             {openList.map((now, idx) => now === match.matchId && <MatchDetail key={idx} match={match}/>)}
             {isLast && (
+              isLoadingMore ? 
+                <LoadingSpinner/> :
                 <ButtonWrapper>
-                  {isLoadingMore ? (
-                    <LoadingSpinner /> // 로딩 스피너 컴포넌트를 표시
-                  ) : (
-                    <MoreButton onClick={handleLoadMore}>더 보기</MoreButton> // 로딩 중이 아니면 더 보기 버튼을 표시
-                  )}
+                  <MoreButton onClick={handleLoadMore}>더 보기</MoreButton> 
                 </ButtonWrapper>
-              )}
+              )
+            }
           </React.Fragment>
         )
       })}
