@@ -22,9 +22,9 @@ const UserInput = () => {
   const {keyBoardIdx,onKeydown,initIndex} = useKeyboard(prevSearched)
 
   const onSubmit = async () => {
-    dispatch(matchActions.initState());
     const ouid = await fetchUserId(user);
     dispatch(userActions.setOuid(ouid));
+    dispatch(matchActions.initState());
     nav(`/search?nickname=${user}`);
     setValue('user', '');
     initIndex();

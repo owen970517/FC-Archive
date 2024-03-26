@@ -17,9 +17,9 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
     }, []);
 
     const handleClickUser = async (nickname:string) => {
-        dispatch(matchActions.initState());
         const ouid = await fetchUserId(nickname)
         dispatch(userActions.setOuid(ouid));
+        dispatch(matchActions.initState());
         const updatedData = latestUser.filter((data:string) => data !== nickname);
         updatedData.unshift(nickname);
         if (updatedData.length > 5) {
