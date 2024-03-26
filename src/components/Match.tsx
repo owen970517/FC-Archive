@@ -75,25 +75,27 @@ const Match = () => {
   return (
     <>
         <Header/>
-        {ouid === undefined && <h1>존재하지 않는 구단주입니다.</h1>}
-        {ouid !== undefined && 
-            <>
-                <UserInfo/>
-                <MatchType/>
-            </>
+        {isLoading ? <LoadingSpinner/> : 
+            ouid === undefined ? 
+                <h1>존재하지 않는 구단주입니다.</h1> : 
+                    <>
+                        <UserInfo/>
+                        <MatchType/>
+                    </>
         }
-        {isLoadingType && allMatchInfo.length === 0 && 
+
+        {!isLoading && isLoadingType && allMatchInfo.length === 0 && 
             <>
                 <LoadingSpinner/>
             </>
         }
-        {!isLoadingType && allMatchInfo.length > 0 &&
+        {!isLoading && !isLoadingType && allMatchInfo.length > 0 &&
             <>
                 <Avarage/>
                 <Matches/>
             </>
         }
-        {!isLoadingType && allMatchInfo.length === 0 &&
+        {!isLoading && !isLoadingType && allMatchInfo.length === 0 &&
             <Wrapper>
                 <h1>기록된 전적이 없습니다.</h1>
             </Wrapper>
