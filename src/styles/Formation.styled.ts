@@ -51,7 +51,7 @@ export const Player = styled.div`
     &.CB { top: 80%; left: 50%; transform: translate(-50%, -50%); }
     &.LB { top: 80%; left: 10%; transform: translate(-50%, -50%); }
     &.RB { top: 80%; left: 90%; transform: translate(-50%, -50%); }
-    &.GK { bottom :2%; left:50%; transform:translate(-50%,-50%);}
+    &.GK { bottom :0; left:50%; transform:translate(-50%,-50%);}
 `
 
 export const PlayerImage = styled.img`
@@ -62,8 +62,9 @@ export const PlayerImage = styled.img`
 
 export const PlayerName = styled.span`
     position: absolute;
-    color : #fff;
+    color : var(--nameColor);
     font-size: 14px;
+    font-weight: 800;
     &.ST { top: 16%; left: 50%; transform: translate(-50%, -50%); }
     &.LS { top: 16%; left: 30%; transform: translate(-50%, -50%); }
     &.RS { top: 16%; left: 70%; transform: translate(-50%, -50%); }
@@ -90,7 +91,7 @@ export const PlayerName = styled.span`
     &.CB { top: 86%; left: 50%; transform: translate(-50%, -50%); }
     &.LB { top: 86%; left: 10%; transform: translate(-50%, -50%); }
     &.RB { top: 86%; left: 90%; transform: translate(-50%, -50%); }
-    &.GK { bottom:4%; left: 50%; transform: translate(-50%, 50%); } 
+    &.GK { bottom:2%; left: 50%; transform: translate(-50%, 50%); } 
 `;
 
 export const PlayerRating = styled.span<{$grade:number}>`
@@ -140,5 +141,5 @@ export const PlayerRating = styled.span<{$grade:number}>`
     &.CB { top: 74%; left: 51%;  }
     &.LB { top: 74%; left: 11%;  }
     &.RB { top: 74%; left: 91%;  }
-    &.GK { bottom:12%; left: 52%;} 
+    &.GK { bottom:10%; left: 52%;} 
 `
