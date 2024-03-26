@@ -79,7 +79,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
               />
             </S.Player>
             <S.PlayerName className={formation[idx]}>{(playerInfo[idx]?.name.split(/[\s-]+/).pop())}</S.PlayerName>
-            <S.PlayerRating rate={starting_sort[idx].status.spRating} className={formation[idx]}>{starting_sort[idx].status.spRating.toFixed(1)} {starting_sort[idx].spId === maxRatingPlayer.spId && <span>⭐</span>}</S.PlayerRating>
+            <S.PlayerRating $grade={starting_sort[idx].status.spRating} className={formation[idx]}>{starting_sort[idx].status.spRating.toFixed(1)} {starting_sort[idx].spId === maxRatingPlayer.spId && <span>⭐</span>}</S.PlayerRating>
           </React.Fragment>
         )}
       </div>

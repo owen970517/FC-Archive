@@ -93,18 +93,18 @@ export const PlayerName = styled.span`
     &.GK { bottom:4%; left: 50%; transform: translate(-50%, 50%); } 
 `;
 
-export const PlayerRating = styled.span<{rate:number}>`
+export const PlayerRating = styled.span<{$grade:number}>`
     z-index: 10;
     position:absolute;
     color : #fff;
-    background-color: ${({ rate }) => {
-        if (rate >= 2 && rate <= 4) {
+    background-color: ${({ $grade }) => {
+        if ($grade >= 2 && $grade <= 4) {
             return 'rgb(229, 94, 91)'; 
-        } else if (rate >= 5 && rate < 6) {
+        } else if ($grade >= 5 && $grade < 6) {
             return 'rgb(240, 128, 34)';
-        } else if (rate >= 6 && rate < 9) {
+        } else if ($grade >= 6 && $grade < 9) {
             return 'rgb(30, 200, 83)'; 
-        } else if (rate >= 9) {
+        } else if ($grade >= 9) {
             return 'rgba(14, 135, 224, 1.0)'; 
         } else {
             return 'rgb(73, 80, 87)'; 
