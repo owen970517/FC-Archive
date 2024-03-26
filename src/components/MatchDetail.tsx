@@ -28,6 +28,9 @@ const Wrapper = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10px;
+  h1 {
+    text-align: center;
+  }
 `
 
 const Categories = styled.div`

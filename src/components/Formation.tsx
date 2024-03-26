@@ -17,11 +17,14 @@ const Formation = ({player}:{player:IPlayer[]}) => {
   const [playerDetail, setPlayerDetail] = useState<IPlayer>();
   const [playerName, setPlayerName] = useState('');
   const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});  
-  const starting = player.filter((d) => d.status.spRating > 0)
+  const starting = player.filter((d) => d.status.spRating > 0) 
   const starting_sort = starting.sort((a,b) => b.spPosition - a.spPosition)
-  const maxRatingPlayer = starting_sort.reduce((prev,cur,idx) => {
-    return prev.status.spRating >= cur.status.spRating ? prev : cur
-  })
+  let maxRatingPlayer:IPlayer;
+  if (starting_sort.length > 0) {
+    maxRatingPlayer = starting_sort.reduce((prev, cur) => {
+      return prev.status.spRating >= cur.status.spRating ? prev : cur;
+    });
+  }
   const playerInfo = starting_sort.map((d) => players.find((p) =>p.id === d.spId))
   const formation = starting_sort.map((s) => position[s.spPosition].desc)
   const playerDefaultImg = 'https://ssl.nexon.com/s2/game/fc/mobile/squadMaker/default/d_player.png'
@@ -56,6 +59,9 @@ const Formation = ({player}:{player:IPlayer[]}) => {
       setImageUrls(prev => ({ ...prev, [spId]: playerDefaultImg }));
     }
   };
+  if (!player || player.length === 0) {
+    return <h1>기록이 존재하지 않습니다.</h1>
+  }
   return (
     <>
       {isModal &&
@@ -73,7 +79,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
               />
             </S.Player>
             <S.PlayerName className={formation[idx]}>{(playerInfo[idx]?.name.split(/[\s-]+/).pop())}</S.PlayerName>
-            <S.PlayerRating rate={Number(starting_sort[idx].status.spRating.toFixed(1))} className={formation[idx]}>{starting_sort[idx].status.spRating.toFixed(1)} {starting_sort[idx].spId === maxRatingPlayer.spId && <span>⭐</span>}</S.PlayerRating>
+            <S.PlayerRating rate={starting_sort[idx].status.spRating} className={formation[idx]}>{starting_sort[idx].status.spRating.toFixed(1)} {starting_sort[idx].spId === maxRatingPlayer.spId && <span>⭐</span>}</S.PlayerRating>
           </React.Fragment>
         )}
       </div>

@@ -45,7 +45,7 @@ const Matches = () => {
                   <p>{dayjs(match.matchDate).fromNow()}</p>
                 </MatchInfo>
                 <h3>
-                  <UserNickName onClick={() => clickNickname(match.matchInfo[0].ouid)}>{match.matchInfo[0].nickname}</UserNickName> {match.matchInfo[0].shoot.goalTotal} : {match.matchInfo[1].shoot.goalTotal} <UserNickName onClick={() => clickNickname(match.matchInfo[1].ouid)}>{match.matchInfo[1].nickname}</UserNickName></h3> 
+                  <UserNickName onClick={() => clickNickname(match.matchInfo[0].ouid)}>{match.matchInfo[0].nickname}</UserNickName> {match.matchInfo[0].shoot.goalTotal !== null ? match.matchInfo[0].shoot.goalTotal : '몰수패'} : {match.matchInfo[1].shoot.goalTotal !== null ? match.matchInfo[1].shoot.goalTotal : '몰수패'} <UserNickName onClick={() => clickNickname(match.matchInfo[1].ouid)}>{match.matchInfo[1].nickname}</UserNickName></h3> 
                 {
                   openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleOpen(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleOpen(match.matchId)} alt='down'/>
                 }

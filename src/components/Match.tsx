@@ -80,7 +80,10 @@ const Match = () => {
                 ) : (
                     <>
                         <UserInfo/>
-                        <h1>기록된 전적이 없습니다.</h1>
+                        <MatchType/>
+                        <Wrapper>
+                            <h1>기록된 전적이 없습니다.</h1>
+                        </Wrapper>
                     </>
                 )
             ) : <Wrapper><h1>존재하지 않는 구단주 입니다.</h1></Wrapper>
