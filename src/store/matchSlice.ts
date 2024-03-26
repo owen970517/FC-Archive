@@ -7,6 +7,7 @@ interface IMatchState {
     isModal: boolean;
     isLoading: boolean;
     isLoadingMore: boolean;
+    isLoadingType : boolean;
     type: number;
     allMatchId: string[];
     allMatchInfo: IMatchInfo[];
@@ -19,6 +20,7 @@ const initialMatchState:IMatchState = {
     isModal :false,
     isLoading : true,
     isLoadingMore : false,
+    isLoadingType : false,
     type :50,
     allMatchId : [],
     allMatchInfo : [],
@@ -32,7 +34,6 @@ const matchSlice = createSlice({
         initState(state) {
             state.offset = 0
             state.type=50
-            state.isLoading = true
             state.isFocus = false
             state.allMatchId=[]
             state.allMatchInfo=[]
@@ -49,6 +50,9 @@ const matchSlice = createSlice({
         },
         setIsLoadingMore(state,action) {
             state.isLoadingMore = action.payload
+        },
+        setIsLoadingType(state,action) {
+            state.isLoadingType = action.payload
         },
         setIsModal(state,action) {
             state.isModal = action.payload

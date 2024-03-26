@@ -17,7 +17,7 @@ dayjs.locale("ko");
 
 const Match = () => {
     const dispatch = useDispatch();
-    const { allMatchId, allMatchInfo, isLoading, type, offset, isLoadingMore } = useSelector((state: RootState) => state.matches);
+    const { allMatchId, allMatchInfo, isLoading, type, offset, isLoadingMore, isLoadingType } = useSelector((state: RootState) => state.matches);
     const { ouid } = useSelector((state: RootState) => state.user);
 
     useEffect(() => {
@@ -31,16 +31,19 @@ const Match = () => {
                 console.error(error);
             } finally {
                 if (allMatchId.length === 0) {
-                    if (!isLoadingMore && isLoading) {
+                    if (isLoading && allMatchInfo.length >0 &&!isLoadingMore && !isLoadingType) {
                         dispatch(matchActions.setIsLoading(false));
-                    } else {
+                    } else if (isLoadingType && allMatchInfo.length >0 &&!isLoading && !isLoadingMore) {
+                        dispatch(matchActions.setIsLoadingType(false));
+                    }
+                    else if(isLoadingMore && allMatchInfo.length >0 &&!isLoading && !isLoadingType) {
                         dispatch(matchActions.setIsLoadingMore(false));
                     }
                 }
             }
         };
         fetchMatchId();
-    }, [ouid, type, offset, isLoadingMore, isLoading, dispatch, allMatchId.length]);
+    }, [ouid, type, offset, isLoadingMore, isLoading, dispatch, allMatchId.length, isLoadingType, allMatchInfo.length]);
 
     useEffect(() => {
         if (allMatchId.length > 0) {
@@ -57,36 +60,43 @@ const Match = () => {
             Promise.all(promises).then(results => {
                 dispatch(matchActions.setAllMatchInfo(results))
             }).finally(() => {
-                if (!isLoadingMore && isLoading) {
+                if (isLoading && allMatchInfo.length >0 &&!isLoadingMore && !isLoadingType) {
                     dispatch(matchActions.setIsLoading(false));
-                } else {
+                } else if (isLoadingType && allMatchInfo.length >0 &&!isLoading && !isLoadingMore) {
+                    dispatch(matchActions.setIsLoadingType(false));
+                }
+                else if(isLoadingMore && allMatchInfo.length >0 &&!isLoading && !isLoadingType) {
                     dispatch(matchActions.setIsLoadingMore(false));
                 }
             });
-        }
-    }, [allMatchId, isLoadingMore, dispatch, isLoading]);
+        } 
+    }, [allMatchId, isLoadingMore, dispatch, isLoading, isLoadingType, allMatchInfo.length]);
+    
   return (
     <>
         <Header/>
-        {isLoading ? <LoadingSpinner/> :
-            ouid !== '' ? (
-                allMatchInfo.length > 0 ? (
-                    <>
-                        <UserInfo/>
-                        <MatchType/>
-                        <Avarage/>
-                        <Matches/>
-                    </>
-                ) : (
-                    <>
-                        <UserInfo/>
-                        <MatchType/>
-                        <Wrapper>
-                            <h1>기록된 전적이 없습니다.</h1>
-                        </Wrapper>
-                    </>
-                )
-            ) : <Wrapper><h1>존재하지 않는 구단주 입니다.</h1></Wrapper>
+        {ouid === undefined && <h1>존재하지 않는 구단주입니다.</h1>}
+        {ouid !== undefined && 
+            <>
+                <UserInfo/>
+                <MatchType/>
+            </>
+        }
+        {isLoadingType && allMatchInfo.length === 0 && 
+            <>
+                <LoadingSpinner/>
+            </>
+        }
+        {!isLoadingType && allMatchInfo.length > 0 &&
+            <>
+                <Avarage/>
+                <Matches/>
+            </>
+        }
+        {!isLoadingType && allMatchInfo.length === 0 &&
+            <Wrapper>
+                <h1>기록된 전적이 없습니다.</h1>
+            </Wrapper>
         }
     </>
   )

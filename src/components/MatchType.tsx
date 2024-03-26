@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { matchActions } from '../store/matchSlice';
 import { RootState } from '../store/store';
@@ -11,6 +11,7 @@ const MatchType = () => {
     const {type} = useSelector((state:RootState) => state.matches)
     const handleMatchType = (e:React.MouseEvent<HTMLButtonElement>) => {
         dispatch(matchActions.initState());
+        dispatch(matchActions.setIsLoadingType(true));
         dispatch(matchActions.setType(Number(e.currentTarget.value)))
     }
 
