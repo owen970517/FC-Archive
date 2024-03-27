@@ -10,10 +10,12 @@ import MatchDetail from './MatchDetail'
 import { matchActions } from '../store/matchSlice'
 import { userActions } from '../store/userSlice'
 import LoadingSpinner from '../common/LoadingSpinner'
+import { useNavigate } from 'react-router-dom'
 
 const Matches = () => {
   const dispatch = useDispatch();
   const {allMatchInfo,openList,offset,isLoadingMore} = useSelector((state:RootState) => state.matches)
+  const nav = useNavigate();
   const {ouid} = useSelector((state:RootState) => state.user)
   const handleLoadMore = () => {
     dispatch(matchActions.setOffset(offset+10))
@@ -46,7 +48,13 @@ const Matches = () => {
                     <p>{dayjs(match.matchDate).fromNow()}</p>
                   </MatchInfo>
                   <h3>
-                    <UserNickName onClick={() => clickNickname(match.matchInfo[0].ouid)}>{match.matchInfo[0].nickname}</UserNickName> {match.matchInfo[0].shoot.goalTotal !== null ? match.matchInfo[0].shoot.goalTotal : '몰수패'} : {match.matchInfo[1].shoot.goalTotal !== null ? match.matchInfo[1].shoot.goalTotal : '몰수패'} <UserNickName onClick={() => clickNickname(match.matchInfo[1].ouid)}>{match.matchInfo[1].nickname}</UserNickName></h3> 
+                    <UserNickName 
+                      onClick={() => {clickNickname(match.matchInfo[0].ouid); nav(`/search?nickname=${match.matchInfo[0].nickname}`);}}>
+                        {match.matchInfo[0].nickname}</UserNickName> {match.matchInfo[0].shoot.goalTotal !== null ? match.matchInfo[0].shoot.goalTotal : '몰수패'} : {match.matchInfo[1].shoot.goalTotal !== null ? match.matchInfo[1].shoot.goalTotal : '몰수패'}
+                    <UserNickName 
+                      onClick={() => {clickNickname(match.matchInfo[1].ouid); nav(`/search?nickname=${match.matchInfo[1].nickname}`);}}> {match.matchInfo[1].nickname}
+                    </UserNickName>
+                  </h3> 
                   {
                     openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleOpen(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleOpen(match.matchId)} alt='down'/>
                   }
