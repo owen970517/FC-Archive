@@ -89,7 +89,7 @@ const Match = () => {
                 <LoadingSpinner/>
             </>
         }
-        {!isLoading && !isLoadingType && allMatchId.length === 0 &&
+        {!isLoading && !isLoadingType && allMatchId.length === 0 && allMatchInfo.length === 0 &&
             <Wrapper>
                 <h1>기록된 전적이 없습니다.</h1>
             </Wrapper>

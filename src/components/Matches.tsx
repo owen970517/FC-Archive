@@ -13,7 +13,7 @@ import LoadingSpinner from '../common/LoadingSpinner'
 
 const Matches = () => {
   const dispatch = useDispatch();
-  const {allMatchInfo,openList,offset,isLoadingMore,isLoadingType} = useSelector((state:RootState) => state.matches)
+  const {allMatchInfo,openList,offset,isLoadingMore} = useSelector((state:RootState) => state.matches)
   const {ouid} = useSelector((state:RootState) => state.user)
   const handleLoadMore = () => {
     dispatch(matchActions.setOffset(offset+10))
