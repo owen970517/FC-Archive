@@ -31,12 +31,12 @@ const Match = () => {
                 console.error(error);
             } finally {
                 if (allMatchId.length === 0) {
-                    if (isLoading && allMatchInfo.length >0 &&!isLoadingMore && !isLoadingType) {
+                    if (isLoading &&!isLoadingMore && !isLoadingType) {
                         dispatch(matchActions.setIsLoading(false));
-                    } else if (isLoadingType && allMatchInfo.length >0 &&!isLoading && !isLoadingMore) {
+                    } else if (isLoadingType &&!isLoading && !isLoadingMore) {
                         dispatch(matchActions.setIsLoadingType(false));
                     }
-                    else if(isLoadingMore && allMatchInfo.length >0 &&!isLoading && !isLoadingType) {
+                    else if(isLoadingMore &&!isLoading && !isLoadingType) {
                         dispatch(matchActions.setIsLoadingMore(false));
                     }
                 }
@@ -71,7 +71,7 @@ const Match = () => {
             });
         } 
     }, [allMatchId, isLoadingMore, dispatch, isLoading, isLoadingType, allMatchInfo.length]);
-    
+
   return (
     <>
         <Header/>
@@ -84,21 +84,21 @@ const Match = () => {
                     </>
         }
 
-        {!isLoading && isLoadingType && allMatchInfo.length === 0 && 
+        {!isLoading && isLoadingType && 
             <>
                 <LoadingSpinner/>
             </>
+        }
+        {!isLoading && !isLoadingType && allMatchId.length === 0 &&
+            <Wrapper>
+                <h1>기록된 전적이 없습니다.</h1>
+            </Wrapper>
         }
         {!isLoading && !isLoadingType && allMatchInfo.length > 0 &&
             <>
                 <Avarage/>
                 <Matches/>
             </>
-        }
-        {!isLoading && !isLoadingType && allMatchInfo.length === 0 &&
-            <Wrapper>
-                <h1>기록된 전적이 없습니다.</h1>
-            </Wrapper>
         }
     </>
   )
