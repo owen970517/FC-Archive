@@ -36,8 +36,8 @@ export const Player = styled.div`
     &.LAM { top: 35%; left: 30%; transform: translate(-50%, -50%); }
     &.CAM { top: 35%; left: 50%; transform: translate(-50%, -50%); }
     &.RAM { top: 35%; left: 70%; transform: translate(-50%, -50%); }
-    &.RM { top: 50%; left: 10%; transform: translate(-50%, -50%); }
-    &.LM { top: 50%; left: 90%; transform: translate(-50%, -50%); }
+    &.RM { top: 50%; left: 90%; transform: translate(-50%, -50%); }
+    &.LM { top: 50%; left: 10%; transform: translate(-50%, -50%); }
     &.CM { top: 50%; left: 50%; transform: translate(-50%, -50%); }
     &.LCM { top: 50%; left: 30%; transform: translate(-50%, -50%); }
     &.RCM { top: 50%; left: 70%; transform: translate(-50%, -50%); }
