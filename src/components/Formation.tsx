@@ -17,7 +17,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
   const [playerDetail, setPlayerDetail] = useState<IPlayer>();
   const [playerName, setPlayerName] = useState('');
   const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});  
-  const starting = player.filter((d) => d.status.spRating > 0) 
+  const starting = player.filter((d) => d.status.spRating > 0 && d.spPosition !== 28) 
   const starting_sort = starting.sort((a,b) => b.spPosition - a.spPosition)
   let maxRatingPlayer:IPlayer;
   if (starting_sort.length > 0) {
@@ -41,7 +41,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
       dispatch(matchActions.setIsModal(false));
     }
   };
-
+  console.log(starting_sort)
   useEffect(() => {
     const initialUrls = starting_sort.reduce((acc:any, cur) => {
       acc[cur.spId] = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${cur.spId}.png`;
