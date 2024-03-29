@@ -76,8 +76,8 @@ export const PlayerName = styled.span`
     &.LAM { top: 41%; left: 30%; transform: translate(-50%, -50%); }
     &.CAM { top: 41%; left: 50%; transform: translate(-50%, -50%); }
     &.RAM { top: 41%; left: 70%; transform: translate(-50%, -50%); }
-    &.RM { top: 56%; left: 10%; transform: translate(-50%, -50%); }
-    &.LM { top: 56%; left: 90%; transform: translate(-50%, -50%); }
+    &.RM { top: 56%; left: 90%; transform: translate(-50%, -50%); }
+    &.LM { top: 56%; left: 10%; transform: translate(-50%, -50%); }
     &.CM { top: 56%; left: 50%; transform: translate(-50%, -50%); }
     &.LCM { top: 56%; left: 30%; transform: translate(-50%, -50%); }
     &.RCM { top: 56%; left: 70%; transform: translate(-50%, -50%); }
