@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import styled from 'styled-components';
 import defaultImg from '../assets/user.svg'
+import { useQuery } from '@tanstack/react-query';
+import { fetchUserData, fetchUserDivision } from '../apis/getUserInfo';
 
 interface IUser {
     ouid : string;
@@ -19,24 +21,18 @@ interface IDivision {
 
 const UserInfo = () => {
     const { ouid } = useSelector((state: RootState) => state.user);
-    const [user, setUser] = useState<IUser>();
-    const [division, setDivision] = useState<IDivision[]>([]);
     const [matchedType , setMatchedType] = useState<IDivision>()
     const [type, setType] = useState<number>(50);
 
-    const fetchUserData = async (url: string) => {
-        try {
-            const response = await fetch(url, {
-                headers: {
-                    "x-nxopen-api-key": process.env.REACT_APP_API_KEY!,
-                }
-            });
-            return await response.json();
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
-    };
+    const {data:user} = useQuery<IUser>({
+        queryKey : ['user', ouid],
+        queryFn : () => fetchUserData(ouid)
+    })
+
+    const {data:division} = useQuery<IDivision[]>({
+        queryKey : ['division', ouid],
+        queryFn : () => fetchUserDivision(ouid)
+    })
 
     const handleType = (e: React.MouseEvent<HTMLButtonElement>) => {
         setType(Number(e.currentTarget.value));
@@ -49,27 +45,11 @@ const UserInfo = () => {
     };
 
     useEffect(() => {
-        const fetchAndSetUser = async () => {
-            const data = await fetchUserData(`https://open.api.nexon.com/fconline/v1/user/basic?ouid=${ouid}`);
-            if (data) setUser(data);
-        };
-
-        const fetchAndSetDivision = async () => {
-            const data = await fetchUserData(`https://open.api.nexon.com/fconline/v1/user/maxdivision?ouid=${ouid}`);
-            if (data) setDivision(data);
-        };
-
-        fetchAndSetUser();
-        fetchAndSetDivision();
-    }, [ouid]);
-
-    useEffect(() => {
         if (division && division.length > 0) {
             const now = division.find((d) => d.matchType === type)
             setMatchedType(now) 
         }
     },[division, type])
-
     return (
         <UserContainer>
             <User>

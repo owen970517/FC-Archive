@@ -20,20 +20,21 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
     const mutation = useMutation({
         mutationFn : fetchUserId,
         onSuccess : (ouid,nickname) => {
-          dispatch(matchActions.initState());
           dispatch(userActions.setOuid(ouid));
+          dispatch(matchActions.initState());
           dispatch(matchActions.setIsLoadingInit(true));
           nav(`/search?nickname=${nickname}`);
         }
       })
+
     const handleClickUser = async (nickname:string) => {
-        mutation.mutate(nickname)
-        const updatedData =  latestUser.filter((data:string) => data !== nickname);
+        const updatedData = latestUser.filter((data:string) => data !== nickname);
         updatedData.unshift(nickname);
         if (updatedData.length > 5) {
           updatedData.pop();
         }
         localStorage.setItem('searched', JSON.stringify(updatedData));
+        mutation.mutate(nickname)
     }
 
     const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {

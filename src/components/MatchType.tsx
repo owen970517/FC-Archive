@@ -11,7 +11,6 @@ const MatchType = () => {
     const {type} = useSelector((state:RootState) => state.matches)
     const handleMatchType = (e:React.MouseEvent<HTMLButtonElement>) => {
         dispatch(matchActions.initState());
-        dispatch(matchActions.setIsLoadingType(true));
         dispatch(matchActions.setType(Number(e.currentTarget.value)))
     }
 
