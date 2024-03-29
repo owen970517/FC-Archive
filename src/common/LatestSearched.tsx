@@ -5,6 +5,7 @@ import { matchActions } from '../store/matchSlice';
 import { fetchUserId } from '../apis/getOuid';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../store/userSlice';
+import { useMutation } from '@tanstack/react-query';
 
 const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
     const dispatch = useDispatch();
@@ -16,17 +17,23 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
         setLatestUser(getLatestUsers());
     }, []);
 
+    const mutation = useMutation({
+        mutationFn : fetchUserId,
+        onSuccess : (ouid,nickname) => {
+          dispatch(matchActions.initState());
+          dispatch(userActions.setOuid(ouid));
+          dispatch(matchActions.setIsLoadingInit(true));
+          nav(`/search?nickname=${nickname}`);
+        }
+      })
     const handleClickUser = async (nickname:string) => {
-        const ouid = await fetchUserId(nickname)
-        dispatch(userActions.setOuid(ouid));
-        dispatch(matchActions.initState());
-        const updatedData = latestUser.filter((data:string) => data !== nickname);
+        mutation.mutate(nickname)
+        const updatedData =  latestUser.filter((data:string) => data !== nickname);
         updatedData.unshift(nickname);
         if (updatedData.length > 5) {
           updatedData.pop();
         }
         localStorage.setItem('searched', JSON.stringify(updatedData));
-        nav(`/search?nickname=${nickname}`);
     }
 
     const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {

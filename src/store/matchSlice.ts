@@ -5,9 +5,8 @@ interface IMatchState {
     offset: number;
     isFocus: boolean;
     isModal: boolean;
-    isLoading: boolean;
+    isLoadingInit: boolean;
     isLoadingMore: boolean;
-    isLoadingType : boolean;
     type: number;
     allMatchId: string[];
     allMatchInfo: IMatchInfo[];
@@ -18,9 +17,8 @@ const initialMatchState:IMatchState = {
     offset : 0,
     isFocus : false,
     isModal :false,
-    isLoading : true,
+    isLoadingInit : false,
     isLoadingMore : false,
-    isLoadingType : false,
     type :50,
     allMatchId : [],
     allMatchInfo : [],
@@ -42,17 +40,14 @@ const matchSlice = createSlice({
         setOffset(state,action) {
             state.offset = action.payload
         },
-        setIsLoading(state,action) {
-            state.isLoading = action.payload
+        setIsLoadingInit(state,action) {
+            state.isLoadingInit = action.payload
         },
         setIsFocus(state,action) {
             state.isFocus = action.payload
         },
         setIsLoadingMore(state,action) {
             state.isLoadingMore = action.payload
-        },
-        setIsLoadingType(state,action) {
-            state.isLoadingType = action.payload
         },
         setIsModal(state,action) {
             state.isModal = action.payload
@@ -64,12 +59,7 @@ const matchSlice = createSlice({
             state.allMatchId = action.payload
         },
         setAllMatchInfo(state, action) {
-            const newMatchInfo = action.payload.filter((newMatch: IMatchInfo) => 
-                !state.allMatchInfo.some(existingMatch => 
-                    existingMatch.matchId === newMatch.matchId
-                )
-            );
-            state.allMatchInfo = [...state.allMatchInfo, ...newMatchInfo];
+            state.allMatchInfo = [...state.allMatchInfo, ...action.payload];
         },
         setHandleOpen(state,action) {
             if (state.openList.includes(action.payload)) {
