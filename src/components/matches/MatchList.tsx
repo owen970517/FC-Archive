@@ -1,18 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { RootState } from '../../store/store'
 import styled from 'styled-components'
-import { IMatchInfo } from '../types/matchInfo'
+import { IMatchInfo } from '../../types/matchInfo'
 import dayjs from 'dayjs'
-import Up from '../assets/up.svg'
-import Down from '../assets/down.svg'
+import Up from '../../assets/up.svg'
+import Down from '../../assets/down.svg'
 import MatchDetail from './MatchDetail'
-import { matchActions } from '../store/matchSlice'
-import { userActions } from '../store/userSlice'
-import LoadingSpinner from '../common/LoadingSpinner'
+import { matchActions } from '../../store/matchSlice'
+import { userActions } from '../../store/userSlice'
+import LoadingSpinner from '../../common/LoadingSpinner'
 import { useNavigate } from 'react-router-dom'
 
-const Matches = () => {
+const MatchList = () => {
   const dispatch = useDispatch();
   const {allMatchInfo,openList,offset,isLoadingMore} = useSelector((state:RootState) => state.matches)
   const nav = useNavigate();
@@ -135,4 +135,4 @@ const MoreButton = styled.button`
 
 `
 
-export default Matches
+export default MatchList

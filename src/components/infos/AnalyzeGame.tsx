@@ -1,8 +1,8 @@
 import React from 'react'
-import { IMatchInfo } from '../types/matchInfo'
+import { IMatchInfo } from '../../types/matchInfo'
 import styled from 'styled-components'
-import Pad from '../assets/pad.svg'
-import Keyboard from '../assets/keyboard.svg'
+import Pad from '../../assets/pad.svg'
+import Keyboard from '../../assets/keyboard.svg'
 
 const AnalyzeGame = ({info}:{info:IMatchInfo}) => {
   return (

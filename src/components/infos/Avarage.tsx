@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import styled from 'styled-components';
 
 const Avarage = () => {

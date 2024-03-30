@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import styled from 'styled-components';
-import defaultImg from '../assets/user.svg'
+import defaultImg from '../../assets/user.svg'
 import { useQuery } from '@tanstack/react-query';
-import { fetchUserData, fetchUserDivision } from '../apis/getUserInfo';
+import { fetchUserData, fetchUserDivision } from '../../apis/getUserInfo';
 
 interface IUser {
     ouid : string;

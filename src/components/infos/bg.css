@@ -8,7 +8,7 @@
     position: relative;
     margin : 0 auto;
     border-radius: 10px;
-    background-image: url('../assets/soccer_field.png');
+    background-image: url('../../assets/soccer_field.png');
     background-size :cover;
     background-position : center;
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { IPlayer } from '../types/player'
+import { IPlayer } from '../../types/player'
 import styled from 'styled-components'
-import CloseBtn from '../assets/close.svg'
+import CloseBtn from '../../assets/close.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { matchActions } from '../store/matchSlice';
+import { RootState } from '../../store/store';
+import { matchActions } from '../../store/matchSlice';
 interface ISeason {
     seasonId : number;
     className : string;

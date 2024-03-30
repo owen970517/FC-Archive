@@ -3,19 +3,18 @@ import React, { useEffect, useState } from 'react'
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import Avarage from './Avarage';
-import Header from '../common/Header';
-import UserInfo from './UserInfo';
-import MatchType from './MatchType';
-import Matches from './Matches';
-import { matchActions } from '../store/matchSlice';
-import LoadingSpinner from '../common/LoadingSpinner';
+import { RootState } from '../../store/store';
+import Avarage from '../infos/Avarage';
+import Header from '../../common/Header';
+import UserInfo from '../infos/UserInfo';
+import MatchType from '../../common/MatchType';
+import MatchList from './MatchList';
+import { matchActions } from '../../store/matchSlice';
+import LoadingSpinner from '../../common/LoadingSpinner';
 import styled from 'styled-components';
 import { useQueries, useQuery } from '@tanstack/react-query';
-import { fetchMatchDetails, fetchMatchId } from '../apis/getMatch';
-import { IMatchInfo } from '../types/matchInfo';
-
+import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
+import { IMatchInfo } from '../../types/matchInfo';
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
@@ -70,7 +69,7 @@ const Match = () => {
             ) : allMatchInfo?.length > 0 ? (
               <>
                 <Avarage/>
-                <Matches/>
+                <MatchList/>
               </>
             ) : 
               <Wrapper>

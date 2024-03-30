@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { category } from '../constants/category';
-import { IMatchInfo } from '../types/matchInfo';
-import AnalyzeGame from './AnalyzeGame';
-import Formation from './Formation';
+import { category } from '../../constants/category';
+import { IMatchInfo } from '../../types/matchInfo';
+import AnalyzeGame from '../infos/AnalyzeGame';
+import Formation from '../infos/Formation';
 import styled from 'styled-components';
 
 const MatchDetail = ({match} : {match:IMatchInfo}) => {

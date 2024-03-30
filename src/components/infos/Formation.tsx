@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import * as S from '../styles/Formation.styled';
-import { IPlayer } from '../types/player';
-import { position } from '../constants/position';
-import { players } from '../constants/spId';
+import * as S from '../../styles/Formation.styled';
+import { IPlayer } from '../../types/player';
+import { position } from '../../constants/position';
+import { players } from '../../constants/spId';
 import './bg.css';
 import PlayerDetail from './PlayerDetail';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { matchActions } from '../store/matchSlice';
+import { RootState } from '../../store/store';
+import { matchActions } from '../../store/matchSlice';
 
 const Formation = ({player}:{player:IPlayer[]}) => {
   const dispatch = useDispatch()
