@@ -5,13 +5,16 @@
 > nexon에서 제공해주는 FC online api를 사용하여 전적 검색 사이트를 구현했습니다.
 
 ## 개발 기간
-2024.03.14 ~ 
-기능 구현 후 api 호출량을 줄이기 위해 React-query를 사용하여 리팩토링 진행 중
+2024.03.14 ~ 2024.03.29
 
 ## 배포 주소 
-    🔗 https://fc-archive.vercel.app/
+
+🔗 https://fc-archive.vercel.app
 
 ## 주요 기능
+
+- API 호출 최소화
+    - React-query의 데이터 캐싱을 통해 api 호출을 줄임
 
 - 검색 및 최근 검색어 구현 
     - 구단주 명을 통해 검색 
@@ -39,7 +42,8 @@
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 
 ### Library
-<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/React Router Dom-3178C6?style=for-the-badge&logo=&logoColor=white">
+<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/React Router Dom-3178C6?style=for-the-badge&logo=reactrouterdom&logoColor=white">
+<img src="https://img.shields.io/badge/react%20query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
 
 ### Environment
 
