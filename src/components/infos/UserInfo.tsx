@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import defaultImg from '../../assets/user.svg'
 import { useQuery } from '@tanstack/react-query';
 import { fetchUserData, fetchUserDivision } from '../../apis/getUserInfo';
+import Title from '../../common/Title';
 
 interface IUser {
     ouid : string;
@@ -51,27 +52,30 @@ const UserInfo = () => {
         }
     },[division, type])
     return (
-        <UserContainer>
-            <User>
-                <ProfileImageWrapper>
-                    <ProfileImg src={defaultImg} alt='user'/>
-                </ProfileImageWrapper>
-                <Info>
-                    <h1>{user?.nickname}</h1>
-                    <h3>레벨 {user?.level}</h3>
-                </Info>
-            </User>
-            <RankContainer>
-                <RankType>
-                    <RankBtn $active={type === 50} onClick={(e) => handleType(e)} value={50}>공식 경기</RankBtn>
-                    <RankBtn $active={type===52} onClick={(e) => handleType(e)} value={52}>감독 모드</RankBtn>
-                </RankType> 
-                <RankInfo>
-                    <img src={matchedType ? getRankImageUrl(matchedType.division) : 'https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank_default.png'} alt='rank' width={80} height={80}/>
-                    <h3>{matchedType ? `달성일: ${dayjs(matchedType.achievementDate).format('YYYY-MM-DD')}` : '최고 등급 기록 없음'}</h3>
-                </RankInfo>
-            </RankContainer>
-        </UserContainer>
+        <>
+            <Title title={user?.nickname}/>
+            <UserContainer>
+                <User>
+                    <ProfileImageWrapper>
+                        <ProfileImg src={defaultImg} alt='user'/>
+                    </ProfileImageWrapper>
+                    <Info>
+                        <h1>{user?.nickname}</h1>
+                        <h3>레벨 {user?.level}</h3>
+                    </Info>
+                </User>
+                <RankContainer>
+                    <RankType>
+                        <RankBtn $active={type === 50} onClick={(e) => handleType(e)} value={50}>공식 경기</RankBtn>
+                        <RankBtn $active={type===52} onClick={(e) => handleType(e)} value={52}>감독 모드</RankBtn>
+                    </RankType> 
+                    <RankInfo>
+                        <img src={matchedType ? getRankImageUrl(matchedType.division) : 'https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank_default.png'} alt='rank' width={80} height={80}/>
+                        <h3>{matchedType ? `달성일: ${dayjs(matchedType.achievementDate).format('YYYY-MM-DD')}` : '최고 등급 기록 없음'}</h3>
+                    </RankInfo>
+                </RankContainer>
+            </UserContainer>
+        </>
     );
 };
 
