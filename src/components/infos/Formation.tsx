@@ -41,15 +41,15 @@ const Formation = ({player}:{player:IPlayer[]}) => {
       dispatch(matchActions.setIsModal(false));
     }
   };
-  console.log(starting_sort)
+
   useEffect(() => {
-    const initialUrls = starting_sort.reduce((acc:any, cur) => {
+    const initialUrls = starting_sort?.reduce((acc:any, cur) => {
       acc[cur.spId] = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${cur.spId}.png`;
       return acc;
     }, {});
 
     setImageUrls(initialUrls);
-  }, [player]);
+  }, []);
 
   const handleImageError = (spId: number) => {
     const newUrl = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${Number(spId.toString().slice(3))}.png`;
@@ -59,9 +59,11 @@ const Formation = ({player}:{player:IPlayer[]}) => {
       setImageUrls(prev => ({ ...prev, [spId]: playerDefaultImg }));
     }
   };
+
   if (!player || player.length === 0) {
     return <h1>기록이 존재하지 않습니다.</h1>
   }
+  
   return (
     <>
       {isModal &&

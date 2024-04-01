@@ -25,6 +25,9 @@ export const Player = styled.div`
     font-weight: bold;
     overflow: hidden;
     cursor: pointer;
+    :hover {
+        transform: scale(1.1);
+    }
     &.ST { top: 10%; left: 50%; transform: translate(-50%, -50%); }
     &.LS { top: 10%; left: 30%; transform: translate(-50%, -50%); }
     &.RS { top: 10%; left: 70%; transform: translate(-50%, -50%); }

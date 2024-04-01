@@ -6,9 +6,10 @@
     width: 80%;
     height: 700px;
     position: relative;
-    margin : 0 auto;
+    margin : 20px auto;
     border-radius: 10px;
     background-image: url('../../assets/soccer_field.png');
     background-size :cover;
     background-position : center;
+
 }
