@@ -76,6 +76,11 @@ const InfoItem = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    h2,h3 {
+        flex : 1;
+        text-align: center;
+    }
 `
 
 export default AnalyzeGame
