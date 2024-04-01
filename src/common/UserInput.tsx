@@ -45,16 +45,8 @@ const UserInput = () => {
     mutation.mutate(data.user)
   };
 
-  const handleInput = (e: React.KeyboardEvent) => {
-    onKeydown(e);
-  };
-
   useEffect(() => {
-    if (keyBoardIdx !== null) {
-      setValue('user', prevSearched[keyBoardIdx]);
-    } else {
-      setValue('user', '');
-    }
+    setValue('user', keyBoardIdx !== null ? prevSearched[keyBoardIdx] : '')
   }, [keyBoardIdx]);
 
   useEffect(() => {
@@ -71,7 +63,7 @@ const UserInput = () => {
           placeholder='구단주 명을 입력하시오'
           onFocus={() => dispatch(matchActions.setIsFocus(true))}
           onBlur={() => dispatch(matchActions.setIsFocus(false))}
-          onKeyDown={handleInput}
+          onKeyDown={onKeydown}
         />
         <button type='submit'>
           <SearchIcon size={21}/>
