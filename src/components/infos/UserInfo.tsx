@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -22,7 +22,6 @@ interface IDivision {
 
 const UserInfo = () => {
     const { ouid } = useSelector((state: RootState) => state.user);
-    const [matchedType , setMatchedType] = useState<IDivision>()
     const [type, setType] = useState<number>(50);
 
     const {data:user} = useQuery<IUser>({
@@ -45,12 +44,8 @@ const UserInfo = () => {
             : `https://ssl.nexon.com/s2/game/fo4/obt/rank/large/update_2009/ico_rank${6+Math.floor((divisionValue-2000)/100)}.png`;
     };
 
-    useEffect(() => {
-        if (division && division.length > 0) {
-            const now = division.find((d) => d.matchType === type)
-            setMatchedType(now) 
-        }
-    },[division, type])
+    const matchedType = useMemo(() => division?.find((d) => d.matchType === type), [division, type]);
+    
     return (
         <>
             <Title title={user?.nickname}/>
