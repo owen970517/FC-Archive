@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import styled from 'styled-components';
+import { IMatchInfo } from '../../types/matchInfo';
 
 const Avarage = () => {
   const { allMatchInfo } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
 
-  const calculateAverage = useCallback(() => {
+  const calculateAverage = ({allMatchInfo, ouid}:{allMatchInfo:IMatchInfo[],ouid:string}) => {
     const initialData = { totalPossession: 0, totalConceded: 0, totalGoal: 0, matchCount: allMatchInfo.length };
     const nowData = allMatchInfo.reduce((acc, curr) => {
       if (curr.matchInfo && curr.matchInfo.length > 1) {
@@ -21,29 +22,29 @@ const Avarage = () => {
       }
       return acc;
     }, initialData);
-
+  
     return {
       averagePossession: nowData.matchCount ? nowData.totalPossession / nowData.matchCount : 0,
       averageConceded: nowData.matchCount ? nowData.totalConceded / nowData.matchCount : 0,
       averageGoal: nowData.matchCount ? nowData.totalGoal / nowData.matchCount : 0,
     };
-  }, [allMatchInfo, ouid]);
+  };
 
-  const averageData = calculateAverage();
+  const averageData = useMemo(() => calculateAverage({allMatchInfo, ouid}), [allMatchInfo, ouid]);
 
   return (
     <AvaragesContainer>
       <AvarageCard>
         <AvarageTitle>{allMatchInfo.length}경기 평균 점유율</AvarageTitle>
-        <AvarageValue color="#2a9d8f">{averageData.averagePossession.toFixed(1)}%</AvarageValue>
+        <AvarageValue>{averageData.averagePossession.toFixed(1)}%</AvarageValue>
       </AvarageCard>
       <AvarageCard>
-        <AvarageTitle>{allMatchInfo.length}경기 평균 득점수</AvarageTitle>
-        <AvarageValue color="#e76f51">{averageData.averageGoal.toFixed(1)}</AvarageValue>
+        <AvarageTitle>{allMatchInfo.length}경기 평균 득점</AvarageTitle>
+        <AvarageValue>{averageData.averageGoal.toFixed(1)}골</AvarageValue>
       </AvarageCard>
       <AvarageCard>
         <AvarageTitle>{allMatchInfo.length}경기 평균 실점</AvarageTitle>
-        <AvarageValue color="#264653">{averageData.averageConceded.toFixed(1)}</AvarageValue>
+        <AvarageValue>{averageData.averageConceded.toFixed(1)}골</AvarageValue>
       </AvarageCard>
     </AvaragesContainer>
   );
@@ -69,17 +70,17 @@ const AvarageCard = styled.div`
   border-radius: 10px;
 `;
 
-// 제목(h3) 스타일
-const AvarageTitle = styled.h3`
+const AvarageTitle = styled.p`
+  font-size: 24px;
+  font-weight: 800;
   color: #333;
   margin-bottom: 10px;
 `;
 
-// 통계 값(p) 스타일
 const AvarageValue = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-  color: ${({color}) => color || '#333'}; // 색상을 prop으로 받아서 적용
+  font-size: 20px;
+  font-weight: 800;
+  color : var(--nameColor);
 `;
 
 export default Avarage
