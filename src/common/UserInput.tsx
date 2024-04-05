@@ -38,6 +38,10 @@ const UserInput = () => {
         updatedData.pop();
       }
       localStorage.setItem('searched', JSON.stringify(updatedData));
+    },
+    onError : () => {
+      dispatch(matchActions.initState());
+      nav(`/search?nickname=${user}`);
     }
   })
 

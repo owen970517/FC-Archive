@@ -26,12 +26,14 @@ const UserInfo = () => {
 
     const {data:user} = useQuery<IUser>({
         queryKey : ['user', ouid],
-        queryFn : () => fetchUserData(ouid)
+        queryFn : () => fetchUserData(ouid),
+        enabled : !!ouid
     })
 
     const {data:division} = useQuery<IDivision[]>({
         queryKey : ['division', ouid],
-        queryFn : () => fetchUserDivision(ouid)
+        queryFn : () => fetchUserDivision(ouid),     
+        enabled : !!ouid   
     })
 
     const handleType = (e: React.MouseEvent<HTMLButtonElement>) => {
