@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
 import { IMatchInfo } from '../../types/matchInfo';
+import { useParams } from 'react-router-dom';
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
@@ -22,6 +23,9 @@ const Match = () => {
   const dispatch = useDispatch();
   const { allMatchInfo, type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
   const {data:matchIds, isLoading} = useQuery<string[]>({
     queryKey : ['matchId',{ouid,type,offset}],
@@ -59,8 +63,11 @@ const Match = () => {
     <>
       <Header/>
       {isLoadingInit ? <LoadingSpinner/> : 
-        ouid === undefined ? 
-          <h1>존재하지 않는 구단주입니다.</h1> : 
+        ouid === '' ? 
+          <ErrContainer>
+            <h1>{nickname}은 존재하지 않는 구단주입니다.</h1>
+            <h3>다시 한번 확인 후 재시도 해주세요</h3>
+          </ErrContainer> : 
           <>
             <UserInfo/>
             <MatchType/>
@@ -82,9 +89,19 @@ const Match = () => {
   );
 }
 const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const ErrContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export default Match
