@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import * as S from '../../styles/Formation.styled';
 import { IPlayer } from '../../types/player';
 import { position } from '../../constants/position';
-import { players } from '../../constants/spId';
 import './bg.css';
 import PlayerDetail from './PlayerDetail';
 import styled from 'styled-components';
@@ -10,11 +9,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { matchActions } from '../../store/matchSlice';
 
+interface ISpid {
+  id : number;
+  name:string;
+}
+
 const Formation = ({player}:{player:IPlayer[]}) => {
   const dispatch = useDispatch()
   const {isModal} = useSelector((state:RootState) => state.matches)
   const [nowformation,setNowFormation] = useState('');
   const [playerDetail, setPlayerDetail] = useState<IPlayer>();
+  const [players,setPlayers] = useState<ISpid[]>([]);
   const [playerName, setPlayerName] = useState('');
   const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});  
   const starting = player.filter((d) => d.status.spRating > 0 && d.spPosition !== 28) 
@@ -50,6 +55,20 @@ const Formation = ({player}:{player:IPlayer[]}) => {
 
     setImageUrls(initialUrls);
   }, []);
+
+  useEffect(() => {
+    const fetchPlayersData = async () => {
+      try {
+        const response = await fetch('/spid.json');
+        const data = await response.json();
+        setPlayers(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPlayersData();
+}, []);
 
   const handleImageError = (spId: number) => {
     const newUrl = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${Number(spId.toString().slice(3))}.png`;

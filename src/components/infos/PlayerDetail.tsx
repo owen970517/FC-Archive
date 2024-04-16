@@ -32,7 +32,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
         };
     
         fetchSeasonIdData();
-      }, []);
+    }, []);
     const now = season.find((s) => s.seasonId === Number(String(player.spId).slice(0,3)))
       
   return (
@@ -42,7 +42,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
             <PlayerImageWrapper>
                 <PlayerImage src={`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${player.spId}.png`}/>
             </PlayerImageWrapper>
-            <h3>{name}</h3>
+            <h3>{name ? name : ''}</h3>
         </Player>
         <PlayerInfo>
             <InfoItem>

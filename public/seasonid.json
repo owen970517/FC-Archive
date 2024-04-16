@@ -15,6 +15,11 @@
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icon.png"
     },
     {
+        "seasonId" : 813,
+        "className" : "JNM (Journeyman)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/jnm.png"
+    },
+    {
         "seasonId" : 802,
         "className" : "DC (Decade)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/dc.png"
