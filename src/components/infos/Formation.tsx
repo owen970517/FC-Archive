@@ -14,14 +14,20 @@ interface ISpid {
   name:string;
 }
 
+const playerDefaultImg = 'https://ssl.nexon.com/s2/game/fc/mobile/squadMaker/default/d_player.png'
+
 const Formation = ({player}:{player:IPlayer[]}) => {
   const dispatch = useDispatch()
   const {isModal} = useSelector((state:RootState) => state.matches)
   const [nowformation,setNowFormation] = useState('');
   const [playerDetail, setPlayerDetail] = useState<IPlayer>();
-  const [players,setPlayers] = useState<ISpid[]>([]);
+  const [seasonplayers,setSeasonPlayers] = useState<ISpid[]>([]);
   const [playerName, setPlayerName] = useState('');
   const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});  
+  useEffect(() => {
+    fetchPlayersData();
+    updateImageUrls(starting_sort)
+  }, []);
   const starting = player.filter((d) => d.status.spRating > 0 && d.spPosition !== 28) 
   const starting_sort = starting.sort((a,b) => b.spPosition - a.spPosition)
   let maxRatingPlayer:IPlayer;
@@ -30,9 +36,8 @@ const Formation = ({player}:{player:IPlayer[]}) => {
       return prev.status.spRating >= cur.status.spRating ? prev : cur;
     });
   }
-  const playerInfo = starting_sort.map((d) => players.find((p) =>p.id === d.spId))
+  const playerInfo = starting_sort.map((d) => seasonplayers.find((p) =>p.id === d.spId))
   const formation = starting_sort.map((s) => position[s.spPosition].desc)
-  const playerDefaultImg = 'https://ssl.nexon.com/s2/game/fc/mobile/squadMaker/default/d_player.png'
   const playerClick = (idx:number) => {
     setNowFormation(formation[idx])
     setPlayerDetail(starting_sort[idx])
@@ -47,36 +52,27 @@ const Formation = ({player}:{player:IPlayer[]}) => {
     }
   };
 
-  useEffect(() => {
-    const initialUrls = starting_sort?.reduce((acc:any, cur) => {
+  const updateImageUrls = (players:IPlayer[]) => {
+    const urls = players.reduce((acc:any, cur) => {
       acc[cur.spId] = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${cur.spId}.png`;
       return acc;
     }, {});
+    setImageUrls(urls);
+  };
 
-    setImageUrls(initialUrls);
-  }, []);
-
-  useEffect(() => {
-    const fetchPlayersData = async () => {
-      try {
-        const response = await fetch('/spid.json');
-        const data = await response.json();
-        setPlayers(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPlayersData();
-}, []);
+  const fetchPlayersData = async () => {
+    try {
+      const response = await fetch('/spid.json');
+      const data = await response.json();
+      setSeasonPlayers(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleImageError = (spId: number) => {
     const newUrl = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${Number(spId.toString().slice(3))}.png`;
-    if (newUrl) {
-      setImageUrls(prev => ({ ...prev, [spId]: newUrl }));
-    } else {
-      setImageUrls(prev => ({ ...prev, [spId]: playerDefaultImg }));
-    }
+    setImageUrls(prev => ({ ...prev, [spId]: newUrl ? newUrl : playerDefaultImg }));
   };
 
   if (!player || player.length === 0) {
