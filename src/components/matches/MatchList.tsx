@@ -36,9 +36,6 @@ const MatchList = () => {
       {
         allMatchInfo.map((match: IMatchInfo, idx) => {
           let isLast = idx === allMatchInfo.length - 1;
-          if (!match.matchInfo) {
-            return null; 
-          }
           return (
             <React.Fragment key={idx}>
               <MatchLists>
@@ -50,11 +47,11 @@ const MatchList = () => {
                   <h3>
                     <UserNickName 
                       onClick={() => {clickNickname(match.matchInfo[0].ouid); nav(`/search?nickname=${match.matchInfo[0].nickname}`);}}>
-                        {match.matchInfo[0].nickname}</UserNickName> {match.matchInfo[0].shoot.goalTotal !== null ? match.matchInfo[0].shoot.goalTotal : '몰수패'} : {match.matchInfo[1].shoot.goalTotal !== null ? match.matchInfo[1].shoot.goalTotal : '몰수패'}
+                        {match.matchInfo[0]?.nickname}</UserNickName> {match?.matchInfo[0]?.shoot?.goalTotal !== null ? match?.matchInfo[0]?.shoot?.goalTotal : '몰수패'} : {match.matchInfo[1]?.shoot?.goalTotal !== null ? match.matchInfo[1]?.shoot?.goalTotal : '몰수패'}
                     <UserNickName 
-                      onClick={() => {clickNickname(match.matchInfo[1].ouid); nav(`/search?nickname=${match.matchInfo[1].nickname}`);}}> {match.matchInfo[1].nickname}
+                      onClick={() => {clickNickname(match.matchInfo[1].ouid); nav(`/search?nickname=${match.matchInfo[1]?.nickname}`);}}> {match.matchInfo[1]?.nickname}
                     </UserNickName>
-                  </h3> 
+                  </h3>
                   {
                     openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleOpen(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleOpen(match.matchId)} alt='down'/>
                   }
