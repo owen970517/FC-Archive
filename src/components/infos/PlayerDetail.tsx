@@ -15,7 +15,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     const dispatch = useDispatch()
     const {isModal} = useSelector((state:RootState) => state.matches)
     const [season , setSeason] = useState<ISeason[]>([]);
-
+    const [imgUrl, setImgUrl] = useState(`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${player.spId}.png`)
     const handleClose = () => {
         dispatch(matchActions.setIsModal(!isModal))
     }
@@ -33,6 +33,11 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     
         fetchSeasonIdData();
     }, []);
+
+    const handleImgError = (id:number) => {
+        setImgUrl(`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${Number(id.toString().slice(3))}.png`)
+    }
+
     const now = season.find((s) => s.seasonId === Number(String(player.spId).slice(0,3)))
       
   return (
@@ -40,7 +45,10 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
         <S.Close src={CloseBtn} alt='close' onClick={handleClose}/>
         <S.Player>
             <S.PlayerImageWrapper>
-                <S.PlayerImage src={`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${player.spId}.png`}/>
+                <S.PlayerImage 
+                    src={imgUrl}
+                    onError={() => handleImgError(player.spId)}
+                />
             </S.PlayerImageWrapper>
             <h3>{name ? name : ''}</h3>
         </S.Player>
