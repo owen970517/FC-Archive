@@ -15,6 +15,16 @@
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icon.png"
     },
     {
+        "seasonId" : 818,
+        "className" : "LD (Last Dance)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/ld.png"
+    },
+    {
+        "seasonId" : 814,
+        "className" : "UT (Unexpected Transfer)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/ut.png"
+    },
+    {
         "seasonId" : 813,
         "className" : "JNM (Journeyman)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/jnm.png"
