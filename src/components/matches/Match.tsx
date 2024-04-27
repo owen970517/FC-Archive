@@ -15,7 +15,7 @@ import styled from 'styled-components';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
 import { IMatchInfo } from '../../types/matchInfo';
-import { useParams } from 'react-router-dom';
+
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
