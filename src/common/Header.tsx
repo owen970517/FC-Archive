@@ -1,17 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import UserInput from './UserInput'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const nav = useNavigate();
+  const location = useLocation();
   const onClick = () => {
     nav('/')
   }
+  
   return (
     <HeaderContainer>
       <MainText onClick={onClick}>FC-Archive</MainText>
-      <UserInput/>
+      <Wrapper>
+        <League to='/league' $isActive={location.pathname === '/league'}>해외 축구</League>
+        <UserInput/>
+      </Wrapper>
     </HeaderContainer>
   )
 }
@@ -31,4 +36,18 @@ const MainText = styled.h1`
   color : var(--textDefault);
   cursor:pointer;
 `;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const League = styled(Link)<{$isActive:boolean}>`
+  font-size: 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: ${(props) => props.$isActive ? 'var(--textDefault)' : 'var(--nameColor)'};
+  background-color: ${(props) => props.$isActive ? 'black' : 'transparent'};
+  padding: 10px;
+  border-radius: 10px;
+`
 export default Header

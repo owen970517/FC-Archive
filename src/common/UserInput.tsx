@@ -40,8 +40,10 @@ const UserInput = () => {
       localStorage.setItem('searched', JSON.stringify(updatedData));
     },
     onError : () => {
+      dispatch(userActions.setOuid(''));
       dispatch(matchActions.initState());
       nav(`/search?nickname=${user}`);
+      setValue('user', '');
     }
   })
 

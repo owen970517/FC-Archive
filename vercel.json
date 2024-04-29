@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "https://www.fotmob.com/api/:path*"
+        }
+    ]
+}
