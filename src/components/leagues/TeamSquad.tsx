@@ -19,7 +19,6 @@ const TeamSquad = () => {
     queryKey : ['info',teamid],
     queryFn : () => getTeamInfo(Number(teamid)),
   }) 
-  console.log(teamInfo)
 
   const handleModal = (member:Member) => {
     setIsModal(prev => !prev)
@@ -27,20 +26,15 @@ const TeamSquad = () => {
   }
   return (
     <>
-      {isModal && 
-        <Modal>
-          
-        </Modal>
-      }
       {isLoading && <LoadingSpinner/>}
         <SquadContainer>
-            <SquadTitle>{teamInfo.type}</SquadTitle>
+            <SquadTitle>{teamInfo?.type}</SquadTitle>
             <MemberContainer>
-                <MemberImage src={teamInfo.sportsTeamJSONLD.logo} alt="logo" width="30" height="30"/>
+                <MemberImage src={teamInfo?.sportsTeamJSONLD.logo} alt="logo" width="30" height="30"/>
                 <MemberInfo>
-                    <h2>{teamInfo.name}</h2>
-                    <p>{teamInfo.country}</p>
-                    <p>{teamInfo.sportsTeamJSONLD.location.name}</p>
+                    <h2>{teamInfo?.name}</h2>
+                    <p>{teamInfo?.country}</p>
+                    <p>{teamInfo?.sportsTeamJSONLD.location.name}</p>
                 </MemberInfo>
             </MemberContainer>
         </SquadContainer>

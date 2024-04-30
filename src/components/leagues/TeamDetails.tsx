@@ -13,8 +13,8 @@ const TeamDetails = () => {
     <>
         <Header/>
         <Wrapper>
-            <StyledBtn onClick={toggleButton} toggle={isSquad}>스쿼드</StyledBtn>
-            <StyledBtn onClick={toggleButton} toggle={!isSquad}>경기</StyledBtn>
+            <StyledBtn onClick={toggleButton} $toggle={isSquad}>스쿼드</StyledBtn>
+            <StyledBtn onClick={toggleButton} $toggle={!isSquad}>경기</StyledBtn>
         </Wrapper>
         {isSquad ? <TeamSquad/> : <Fixtures/>}
     </>
@@ -26,8 +26,8 @@ const Wrapper = styled.div`
     justify-content: space-around;
     align-items: center;
 `
-const StyledBtn =styled.button<{toggle:boolean}>`
-    background-color: ${(props) => props.toggle ? 'lightblue' : 'aliceblue'};
+const StyledBtn =styled.button<{$toggle:boolean}>`
+    background-color: ${(props) => props.$toggle ? 'lightblue' : 'aliceblue'};
     border: none;
     font-size: 20px;
     cursor: pointer;
