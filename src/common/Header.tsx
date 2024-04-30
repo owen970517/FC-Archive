@@ -14,7 +14,7 @@ const Header = () => {
     <HeaderContainer>
       <MainText onClick={onClick}>FC-Archive</MainText>
       <Wrapper>
-        <League to='/league' $isActive={location.pathname === '/league'}>해외 축구</League>
+        <League to='/league' $isActive={location.pathname.startsWith('/league')}>해외 축구</League>
         <UserInput/>
       </Wrapper>
     </HeaderContainer>
