@@ -15,7 +15,7 @@ const TeamDetails = () => {
         <Header/>
         <Wrapper>
             <StyledBtn onClick={toggleButton} $toggle={isSquad}>스쿼드</StyledBtn>
-            <StyledBtn onClick={toggleButton} $toggle={!isSquad}>경기</StyledBtn>
+            <StyledBtn onClick={toggleButton} $toggle={!isSquad}>경기 일정</StyledBtn>
         </Wrapper>
         {isSquad ? 
             <>
