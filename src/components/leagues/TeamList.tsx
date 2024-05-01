@@ -7,13 +7,20 @@ import { Link } from 'react-router-dom';
 import SelectLeague from './SelectLeague';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
+import { enTokrTeam } from '../../constants/translateTeam';
 
 const TeamList = () => {
-    const [nowid,setNowId] = useState(47);
-    const {data:teamList, isLoading} = useQuery<ITeams[]>({
-        queryKey : ['leagues',nowid],
-        queryFn : () => getLeagues(nowid),
-      }) 
+  const [nowid,setNowId] = useState(47);
+  const {data:teamList, isLoading} = useQuery<ITeams[]>({
+    queryKey : ['leagues',nowid],
+    queryFn : () => getLeagues(nowid),
+  }) 
+  const translateName = (shortName:string) => {
+    const nowLeague = enTokrTeam[nowid]
+    if (nowLeague) {
+      return nowLeague.teams[shortName] || shortName
+    }
+  }
   return (
     <>
         <Header/>
@@ -38,7 +45,7 @@ const TeamList = () => {
                 <LogoCell>
                     <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.id}_small.png`} alt="logo" width="30" height="30"/>
                 </LogoCell>
-                <TeamNameCell to={`/league/${team.id}`}>{team.shortName}</TeamNameCell>
+                <TeamNameCell to={`/league/${team.id}`}>{translateName(team.shortName)}</TeamNameCell>
                 <RankCell>{team.played}</RankCell>
                 <RankCell>{team.wins}</RankCell>
                 <RankCell>{team.losses}</RankCell>

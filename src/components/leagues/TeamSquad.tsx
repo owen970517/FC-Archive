@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { matchActions } from '../../store/matchSlice';
 import { RootState } from '../../store/store';
 import MemberDetail from './MemberDetail';
+import { enTokrPosition } from '../../constants/translatePosition';
 
 
 const TeamSquad = () => {
@@ -26,6 +27,10 @@ const TeamSquad = () => {
     setNowMember(member)
   }
 
+  const translatePosition = (title:string) => {
+    return enTokrPosition[title]
+  }
+  
   return (
     <>
       {isLoading && <LoadingSpinner/>}
@@ -36,7 +41,7 @@ const TeamSquad = () => {
       }
       {teamSquad?.map((squad:ISquad, idx) => (
         <SquadContainer key={idx}>
-          <SquadTitle>{squad.title}</SquadTitle>
+          <SquadTitle>{translatePosition(squad.title)}</SquadTitle>
           <SquadMembersContainer>
             {squad.members.map((member) => (
               <MemberContainer key={member.id} onClick ={() => handleModal(member)}>
