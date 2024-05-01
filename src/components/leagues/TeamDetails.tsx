@@ -13,21 +13,23 @@ const TeamDetails = () => {
   return (
     <>
         <Header/>
-        <Wrapper>
-            <StyledBtn onClick={toggleButton} $toggle={isSquad}>스쿼드</StyledBtn>
-            <StyledBtn onClick={toggleButton} $toggle={!isSquad}>경기 일정</StyledBtn>
-        </Wrapper>
-        {isSquad ? 
-            <>
-                <TeamInfo/>
-                <TeamSquad/>
-            </>
-         : 
-            <>
-                <TeamInfo/>
-                <Fixtures/>
-            </>
-         }
+        <DetailContainer>
+            <Wrapper>
+                <StyledBtn onClick={toggleButton} $toggle={isSquad}>스쿼드</StyledBtn>
+                <StyledBtn onClick={toggleButton} $toggle={!isSquad}>경기 일정</StyledBtn>
+            </Wrapper>
+            {isSquad ? 
+                <>
+                    <TeamInfo/>
+                    <TeamSquad/>
+                </>
+            : 
+                <>
+                    <TeamInfo/>
+                    <Fixtures/>
+                </>
+            }
+        </DetailContainer>
     </>
   )
 }
@@ -36,6 +38,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 20px;
 `
 const StyledBtn =styled.button<{$toggle:boolean}>`
     background-color: ${(props) => props.$toggle ? '#000' : ''};
@@ -46,5 +49,11 @@ const StyledBtn =styled.button<{$toggle:boolean}>`
     padding: 10px;
     border-radius: 10px;
 `
+
+const DetailContainer = styled.div`
+    width: 80%;
+    margin : 0 auto;
+`
+
 
 export default TeamDetails

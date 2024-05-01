@@ -39,7 +39,7 @@ const TeamInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding : 10px;
-  margin: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
   background-color: #1D1D1D;
   p,h2 {

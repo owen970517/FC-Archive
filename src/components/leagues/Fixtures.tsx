@@ -20,42 +20,38 @@ const Fixtures = () => {
   })
   const remainFixtures = teamFixtures?.filter((fix:IFixtures) => dayjs(fix?.status.utcTime).isAfter(now))
   return (
-    <>
-      <FixtureContainer>
-        {isLoading && <LoadingSpinner/>}
-        <h3>남은 경기 일정</h3>
-        {remainFixtures?.map((fixture:IFixtures,idx:number) => (
-          <FixtureItem key={idx}>
-            <FixtureTime>
-              <div>
-                <p>{dayjs(fixture?.status.utcTime).format('YYYY-MM-DD HH:mm')}</p>
-                <p>{dayjs(fixture?.status.utcTime).fromNow()}</p>
-              </div>
-              <p>{fixture.tournament.name}</p>
-            </FixtureTime>
-            <FixtureTitle> 
-              <FixtrueMain>
-                <p>{fixture.home.name}</p> 
-                <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${fixture.home.id}_small.png`} alt="logo" width="50" height="50"/>
-              </FixtrueMain>
-              <h1>VS</h1> 
-              <FixtrueMain>
-                <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${fixture.away.id}_small.png`} alt="logo" width="50" height="50"/>
-                <p>{fixture.away.name}</p>
-              </FixtrueMain> 
-            </FixtureTitle>
-          </FixtureItem>
-        ))}
-      </FixtureContainer>
-    </>
+    <FixtureContainer>
+      {isLoading && <LoadingSpinner/>}
+      <h3>남은 경기 일정</h3>
+      {remainFixtures?.map((fixture:IFixtures,idx:number) => (
+        <FixtureItem key={idx}>
+          <FixtureTime>
+            <div>
+              <p>{dayjs(fixture?.status.utcTime).format('YYYY-MM-DD HH:mm')}</p>
+              <p>{dayjs(fixture?.status.utcTime).fromNow()}</p>
+            </div>
+            <p>{fixture.tournament.name}</p>
+          </FixtureTime>
+          <FixtureTitle> 
+            <FixtrueMain>
+              <p>{fixture.home.name}</p> 
+              <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${fixture.home.id}_small.png`} alt="logo" width="50" height="50"/>
+            </FixtrueMain>
+            <h1>VS</h1> 
+            <FixtrueMain>
+              <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${fixture.away.id}_small.png`} alt="logo" width="50" height="50"/>
+              <p>{fixture.away.name}</p>
+            </FixtrueMain> 
+          </FixtureTitle>
+        </FixtureItem>
+      ))}
+    </FixtureContainer>
   )
 }
 
 const FixtureContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
-  margin : 0 auto;
 `
 const FixtureItem = styled.div`
   background-color: #1d1d1d;
