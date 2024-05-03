@@ -5,25 +5,25 @@ import { getTeamInfo } from '../../apis/getLeagues'
 import styled from 'styled-components'
 import Stadium from '../../assets/stadium.png'
 import { translateCountry } from '../../utils/translatorCountry'
+import { ITeamInfo } from '../../types/teaminfo'
 const TeamInfo = () => {
   const {teamid} = useParams()
-  const {data:teamInfo, isLoading} = useQuery<any>({
+  const {data:teamInfo, isLoading} = useQuery<ITeamInfo>({
     queryKey : ['info',teamid],
     queryFn : () => getTeamInfo(Number(teamid)),
   }) 
-    
   return (
     <>
       {!isLoading &&
         <TeamInfoContainer>
           <TeamTitle>구단</TeamTitle>
-          <InfoContainer $teamColor={teamInfo?.history.teamColor}>
+          <InfoContainer $teamColor={teamInfo?.history.teamColor!}>
             <TeamIogo src={teamInfo?.details.sportsTeamJSONLD.logo} alt="logo" width="30" height="30"/>
             <Info>
               <h1>{teamInfo?.details.name}</h1>
               <TeamCountry>
                   <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${teamInfo?.details.country.toLowerCase()}.png`} alt='logo' width={30} height={30}/>
-                  <h3>{translateCountry(teamInfo?.details.country)}</h3>
+                  <h3>{translateCountry(teamInfo?.details.country!)}</h3>
               </TeamCountry>
               <TeamCountry>
                   <img src={Stadium} alt='stadium' width={30} height={30}/>
