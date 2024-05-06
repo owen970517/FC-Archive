@@ -6,6 +6,10 @@ import { IMemberDetails } from '../../types/memberDetail';
 const CoachDetail = ({coach} : {coach:IMemberDetails}) => {
   
   const totalCoachTrophies = useMemo(() => {
+    const coachTrophies = coach?.trophies.coachTrophies
+    if (!coachTrophies) {
+      return 0
+    }
     return coach?.trophies.coachTrophies.reduce((acc, player) => acc + player.tournaments.length, 0)
   },[coach])
 

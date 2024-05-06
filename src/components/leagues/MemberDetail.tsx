@@ -24,8 +24,12 @@ const MemberDetail = ({member} : {member:Member}) => {
   }) 
   
   const totalTournaments = useMemo(() => {
-    return memberDetails?.trophies.playerTrophies.reduce((acc, player) => acc + player.tournaments.length, 0) ?? 0;
-  }, [memberDetails]); 
+    const playerTrophies = memberDetails?.trophies?.playerTrophies;
+    if (!playerTrophies) {
+      return 0;
+    }
+    return playerTrophies.reduce((acc, player) => acc + player.tournaments.length, 0);
+  }, [memberDetails]);
   
   return (
     <S.PlayerWrapper>
