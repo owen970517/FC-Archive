@@ -70,6 +70,12 @@ export interface IMemberDetails {
         stats : Stats[],
     },
     playerInformation : PlayerInfo[],
+    positionDescription : {
+        primaryPosition : {
+            label : string;
+            key : string;
+        }
+    },
     trophies : {
         coachTrophies : TeamTrophy[],
         playerTrophies : TeamTrophy[]
