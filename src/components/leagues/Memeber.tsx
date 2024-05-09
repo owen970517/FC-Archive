@@ -14,7 +14,7 @@ const Memeber = ({member}:{member:IMemberDetails}) => {
 
   const marketValue = member.playerInformation.filter((info) => info.title === 'Market value')
   const preferredFoot = member.playerInformation.filter((info) => info.title === 'Preferred foot')
-
+  
   return (
     <>
       <S.Player>
@@ -43,10 +43,12 @@ const Memeber = ({member}:{member:IMemberDetails}) => {
           <S.StatusName>총 우승 횟수</S.StatusName>
           <S.StatusValue>{totalTournaments}</S.StatusValue>
         </S.StatusItem>
-        <S.StatusItem>
-          <S.StatusName>주발</S.StatusName>
-          <S.StatusValue>{enToKrMember[preferredFoot[0].value.fallback]}</S.StatusValue>
-        </S.StatusItem>
+        { preferredFoot.length > 0 && 
+          <S.StatusItem>
+            <S.StatusName>주발</S.StatusName>
+            <S.StatusValue>{enToKrMember[preferredFoot[0].value.fallback]}</S.StatusValue>
+          </S.StatusItem>
+        }
         {member.mainLeague.stats.map((stat) => (
           <S.StatusItem key={stat.localizedTitleId}>
             <S.StatusName>{enToKrMember[stat.title]}</S.StatusName>
