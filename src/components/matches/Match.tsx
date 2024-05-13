@@ -58,7 +58,7 @@ const Match = () => {
       }
     }
   }, [allQueriesCompleted,type,ouid]);
-
+  
   return (
     <>
       <Header/>
@@ -73,7 +73,7 @@ const Match = () => {
             <MatchType/>
             {(!isLoadingInit && !isLoadingMore && isLoading) ? (
               <LoadingSpinner/> 
-            ) : allMatchInfo?.length > 0 ? (
+            ) : matchDetails.length > 0 ? (
               <>
                 <Avarage/>
                 <MatchList/>
