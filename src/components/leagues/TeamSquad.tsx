@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { matchActions } from '../../store/matchSlice';
 import { RootState } from '../../store/store';
 import MemberDetail from './MemberDetail';
-import { enTokrPosition } from '../../constants/translatePosition';
+import { enTokrPosition } from '../../constants/translateLanguage';
 
 
 const TeamSquad = () => {

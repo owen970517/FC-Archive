@@ -1,3 +1,21 @@
+export const enToKrCountry:{[country:string]:string} = {
+    'ENG' : '영국',
+    'ESP' : '스페인',
+    'GER' : '독일',
+    'ITA' : '이탈리아',
+    'FRA' : '프랑스',
+    'KOR' : '대한민국',
+}
+
+export const enTokrPosition:{[pos:string]:string} = {
+    team : '팀',
+    coach :'감독',
+    keepers : '골키퍼',
+    defenders : '수비수',
+    midfielders : '미드필더',
+    attackers : '공격수',
+}
+
 interface Teams {
     [key: string]: string;
   }

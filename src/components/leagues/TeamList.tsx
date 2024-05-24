@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import SelectLeague from './SelectLeague';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
-import { enTokrTeam } from '../../constants/translateTeam';
+import { enTokrTeam } from '../../constants/translateLanguage';
+
 
 const TeamList = () => {
   const [nowid,setNowId] = useState(47);
@@ -17,9 +18,7 @@ const TeamList = () => {
   }) 
   const translateName = (shortName:string) => {
     const nowLeague = enTokrTeam[nowid]
-    if (nowLeague) {
-      return nowLeague.teams[shortName] || shortName
-    }
+    return nowLeague.teams[shortName] || shortName
   }
   return (
     <>
