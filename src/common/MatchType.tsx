@@ -3,8 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { matchActions } from '../store/matchSlice';
 import { RootState } from '../store/store';
 import { matchtype } from '../constants/metadata';
-import { IMatch } from '../types/matchtype';
 import styled from 'styled-components';
+
+interface IMatch {
+    value : number;
+    name : string;
+}
 
 const MatchType = () => {
     const dispatch = useDispatch()

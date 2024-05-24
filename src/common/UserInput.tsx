@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { IForm } from '../types/form';
 import { userActions } from '../store/userSlice';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -12,6 +11,11 @@ import useKeyboard from '../hooks/useKeyboard';
 import { fetchUserId } from '../apis/getOuid';
 import { RootState } from '../store/store';
 import { useMutation } from '@tanstack/react-query';
+
+interface IForm {
+  user : string;
+  match : string;
+}
 
 const UserInput = () => {
   const dispatch = useDispatch();
