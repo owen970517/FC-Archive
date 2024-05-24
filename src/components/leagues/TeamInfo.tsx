@@ -6,14 +6,23 @@ import styled from 'styled-components'
 import Stadium from '../../assets/stadium.png'
 import { translateCountry } from '../../utils/translatorCountry'
 import { ITeamInfo } from '../../types/teaminfo'
+import Title from '../../common/Title'
+import { enTokrTeam } from '../../constants/translateLanguage'
 const TeamInfo = () => {
   const {teamid} = useParams()
   const {data:teamInfo, isLoading} = useQuery<ITeamInfo>({
     queryKey : ['info',teamid],
     queryFn : () => getTeamInfo(Number(teamid)),
   }) 
+  const translateName = (teamid:number ,shortName:string) => {
+    const nowLeague = enTokrTeam[teamid]
+    if (nowLeague) {
+      return nowLeague.teams[shortName] || shortName
+    }
+  }
   return (
     <>
+      <Title title={translateName(teamInfo?.details.primaryLeagueId!,teamInfo?.details.shortName!)}/>  
       {!isLoading &&
         <TeamInfoContainer>
           <TeamTitle>구단</TeamTitle>

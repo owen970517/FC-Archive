@@ -8,6 +8,8 @@ export interface ITeamInfo {
                 name : string;
             }
         }
+        shortName : string;
+        primaryLeagueId : number;
     }
     history : {
         teamColor : string;
