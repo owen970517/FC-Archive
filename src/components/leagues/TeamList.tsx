@@ -9,6 +9,8 @@ import LoadingSpinner from '../../common/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
 import { enTokrTeam } from '../../constants/translateLanguage';
 import Title from '../../common/Title';
+import LeagueTitle from './LeagueTitle';
+import { infoList } from '../../constants/leagueInfo';
 
 
 const TeamList = () => {
@@ -21,6 +23,7 @@ const TeamList = () => {
     const nowLeague = enTokrTeam[nowid]
     return nowLeague.teams[shortName] || shortName
   }
+
   return (
     <>
       <Title title='해외축구'/>
@@ -30,30 +33,22 @@ const TeamList = () => {
           {isLoading ? <LoadingSpinner/> :               
             <RankTable>
               <RankHeader>
-              <RankCell>순위</RankCell>
-              <LogoCell>로고</LogoCell>
-              <TeamtopNameCell>팀 이름</TeamtopNameCell>
-              <RankCell>경기</RankCell>
-              <RankCell>승</RankCell>
-              <RankCell>패</RankCell>
-              <RankCell>무</RankCell>
-              <RankCell>득실차</RankCell>
-              <RankCell>승점</RankCell>
+                <LeagueTitle list={infoList}/>
               </RankHeader>
               {teamList?.map((team) => (
-              <RankRow key={team.id}>
-              <RankCell>{team.idx}</RankCell>
-              <LogoCell>
-                  <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.id}_small.png`} alt="logo" width="30" height="30"/>
-              </LogoCell>
-              <TeamNameCell to={`/league/${team.id}`}>{translateName(team.shortName)}</TeamNameCell>
-              <RankCell>{team.played}</RankCell>
-              <RankCell>{team.wins}</RankCell>
-              <RankCell>{team.losses}</RankCell>
-              <RankCell>{team.draws}</RankCell>
-              <RankCell>{team.goalConDiff}</RankCell>
-              <RankCell>{team.pts}</RankCell>
-              </RankRow>
+                <RankRow key={team.id}>
+                  <RankCell>{team.idx}</RankCell>
+                  <LogoCell>
+                    <img src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.id}_small.png`} alt="logo" width="30" height="30"/>
+                  </LogoCell>
+                  <TeamNameCell to={`/league/${team.id}`}>{translateName(team.shortName)}</TeamNameCell>
+                  <RankCell>{team.played}</RankCell>
+                  <RankCell>{team.wins}</RankCell>
+                  <RankCell>{team.losses}</RankCell>
+                  <RankCell>{team.draws}</RankCell>
+                  <RankCell>{team.goalConDiff}</RankCell>
+                  <RankCell>{team.pts}</RankCell>
+                </RankRow>
               ))}
           </RankTable>
         } 
@@ -85,12 +80,6 @@ const LogoCell = styled.div`
   justify-content: center; 
   padding: 10px;
   margin-right: 50px;
-`;
-
-const TeamtopNameCell = styled.div` 
-  flex: 2; 
-  padding: 10px;
-  text-align: left; 
 `;
 
 const TeamNameCell = styled(Link)` 
