@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import styled from 'styled-components';
