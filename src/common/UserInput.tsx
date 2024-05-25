@@ -11,6 +11,7 @@ import useKeyboard from '../hooks/useKeyboard';
 import { fetchUserId } from '../apis/getOuid';
 import { RootState } from '../store/store';
 import { useMutation } from '@tanstack/react-query';
+import { addSearchBox } from '../utils/updatedSearchBox';
 
 interface IForm {
   user : string;
@@ -25,7 +26,6 @@ const UserInput = () => {
   const user = watch('user');
   const prevSearched: string[] = JSON.parse(localStorage.getItem('searched') || '[]');
   const { keyBoardIdx, onKeydown, initIndex } = useKeyboard(prevSearched);
-
   const mutation = useMutation({
     mutationKey : ['nickname',user],
     mutationFn : fetchUserId,
@@ -35,13 +35,8 @@ const UserInput = () => {
       dispatch(matchActions.setIsLoadingInit(true));
       nav(`/search?nickname=${user}`);
       setValue('user', '');
+      addSearchBox(user,prevSearched);
       initIndex();
-      const updatedData = prevSearched.filter((data: string) => data !== user);
-      updatedData.unshift(user);
-      if (updatedData.length > 5) {
-        updatedData.pop();
-      }
-      localStorage.setItem('searched', JSON.stringify(updatedData));
     },
     onError : () => {
       dispatch(userActions.setOuid(''));
@@ -61,8 +56,8 @@ const UserInput = () => {
 
   useEffect(() => {
     initIndex();
-  }, [initIndex, isFocus]);
-
+  }, [initIndex]);
+  console.log(isFocus)
   return (
     <SearchContainer>
       <SearchBar onSubmit={handleSubmit(onSubmit)}>

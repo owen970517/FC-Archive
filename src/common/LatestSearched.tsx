@@ -6,12 +6,13 @@ import { fetchUserId } from '../apis/getOuid';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../store/userSlice';
 import { useMutation } from '@tanstack/react-query';
+import { addSearchBox, deleteSearchBox } from '../utils/updatedSearchBox';
 
 const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
     const getLatestUsers = () => JSON.parse(localStorage.getItem('searched') || '[]');
-    const [latestUser, setLatestUser] = useState(getLatestUsers());
+    const [latestUser, setLatestUser] = useState<string[]>(getLatestUsers());
 
     useEffect(() => {
         setLatestUser(getLatestUsers());
@@ -28,21 +29,15 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
       })
 
     const handleClickUser = async (nickname:string) => {
-        const updatedData = latestUser.filter((data:string) => data !== nickname);
-        updatedData.unshift(nickname);
-        if (updatedData.length > 5) {
-          updatedData.pop();
-        }
-        localStorage.setItem('searched', JSON.stringify(updatedData));
+        addSearchBox(nickname,latestUser)
         mutation.mutate(nickname)
     }
 
     const deleteItem = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
+        e.preventDefault()
         const now = e.currentTarget.value
-        const latest = latestUser.filter((nickname:string) => nickname !== now)
-        localStorage.setItem('searched',JSON.stringify(latest))
-        setLatestUser(latest)
+        setLatestUser(deleteSearchBox(now,latestUser))
     }
 
   return (
