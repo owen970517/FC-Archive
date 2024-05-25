@@ -22,7 +22,7 @@ const MatchList = () => {
     dispatch(matchActions.setIsLoadingMore(true))
   }
 
-  const handleOpen = (id:string) => {
+  const handleToggleDetail = (id:string) => {
     dispatch(matchActions.setHandleOpen(id))
   }
 
@@ -53,7 +53,7 @@ const MatchList = () => {
                     </UserNickName>
                   </h3>
                   {
-                    openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleOpen(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleOpen(match.matchId)} alt='down'/>
+                    openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleToggleDetail(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleToggleDetail(match.matchId)} alt='down'/>
                   }
                 </MatchItem>
               </MatchLists>

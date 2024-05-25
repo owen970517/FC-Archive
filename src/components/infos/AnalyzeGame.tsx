@@ -5,12 +5,21 @@ import Pad from '../../assets/pad.svg'
 import Keyboard from '../../assets/keyboard.svg'
 
 const AnalyzeGame = ({info}:{info:IMatchInfo}) => {
+    
+    const getControllerImage = (controllerType:string) => {
+        return controllerType === 'keyboard' ? (
+            <img src={Keyboard} alt='keyboard' width={40} height={40}/>
+        ) : (
+            <img src={Pad} alt='pad' width={40} height={40}/>
+        );
+    };
+
   return (
     <MatchInfo>
         <InfoItem>
-            <h3>{info.matchInfo[0].matchDetail.controller === 'keyboard' ? <img src={Keyboard} alt='keyboard' width={40} height={40}/>: <img src={Pad} alt='pad' width={40} height={40}/>}</h3>
+            <h3>{getControllerImage(info.matchInfo[0].matchDetail.controller!)}</h3>
             <h2>컨트롤러</h2>
-            <h3>{info.matchInfo[1].matchDetail.controller === 'keyboard' ? <img src={Keyboard} alt='keyboard' width={40} height={40}/>: <img src={Pad} alt='pad' width={40} height={40}/>}</h3> 
+            <h3>{getControllerImage(info.matchInfo[1].matchDetail.controller!)}</h3> 
         </InfoItem>
         <InfoItem>
             <h3>{info.matchInfo[0].shoot.shootTotal}</h3>
