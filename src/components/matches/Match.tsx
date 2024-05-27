@@ -21,7 +21,7 @@ dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { allMatchInfo, type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
+  const { type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
