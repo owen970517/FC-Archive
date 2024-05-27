@@ -30,8 +30,8 @@ const UserInput = () => {
     mutationKey : ['nickname',user],
     mutationFn : fetchUserId,
     onSuccess : (ouid) => {
-      dispatch(userActions.setOuid(ouid));
       dispatch(matchActions.initState());
+      dispatch(userActions.setOuid(ouid));
       dispatch(matchActions.setIsLoadingInit(true));
       nav(`/search?nickname=${user}`);
       setValue('user', '');
@@ -39,25 +39,27 @@ const UserInput = () => {
       initIndex();
     },
     onError : () => {
-      dispatch(userActions.setOuid(''));
       dispatch(matchActions.initState());
+      dispatch(userActions.setOuid(''));
       nav(`/search?nickname=${user}`);
       setValue('user', '');
     }
   })
 
+  const onBlur = () => {
+    dispatch(matchActions.setIsFocus(false))
+    initIndex();
+  }
+
   const onSubmit = async (data: IForm) => {
     mutation.mutate(data.user)
   };
 
+
   useEffect(() => {
     setValue('user', keyBoardIdx !== null ? prevSearched[keyBoardIdx] : '')
   }, [keyBoardIdx]);
-
-  useEffect(() => {
-    initIndex();
-  }, [initIndex]);
-  console.log(isFocus)
+  
   return (
     <SearchContainer>
       <SearchBar onSubmit={handleSubmit(onSubmit)}>
@@ -67,7 +69,7 @@ const UserInput = () => {
           autoComplete='off'
           placeholder='구단주 명을 입력하시오'
           onFocus={() => dispatch(matchActions.setIsFocus(true))}
-          onBlur={() => dispatch(matchActions.setIsFocus(false))}
+          onBlur={onBlur}
           onKeyDown={onKeydown}
         />
         <button type='submit'>
