@@ -27,7 +27,7 @@ const Match = () => {
   const urlParams = new URLSearchParams(queryString);
   const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
-  const {data:matchIds, isLoading:isMatchIdsLoading} = useQuery<string[]>({
+  const {data:matchIds, isLoading:isMatchIdsLoading, refetch:refetchMatchIds } = useQuery<string[]>({
     queryKey : ['matchId',{ouid,type,offset}],
     queryFn : () => fetchMatchId({ouid,type,offset}),
     enabled : !!ouid
@@ -53,12 +53,19 @@ const Match = () => {
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
       if (isLoadingInit) {
         dispatch(matchActions.setIsLoadingInit(false))
-      } else if (!isLoadingInit && isLoadingMore) {
+      } else if(isLoadingMore) {
         dispatch(matchActions.setIsLoadingMore(false))
       }
     }
-  }, [allQueriesCompleted,type,ouid]);
-  console.log(allMatchInfo,matchDetails)
+  }, [allQueriesCompleted,dispatch]);
+  
+  useEffect(() => {
+    if (ouid) {
+      setAllQueriesCompleted(false);
+      refetchMatchIds();
+    }
+  }, [type, offset, ouid, refetchMatchIds]);
+
   return (
     <>
       <Header/>
@@ -71,7 +78,7 @@ const Match = () => {
           <>
             <UserInfo/>
             <MatchType/>
-            {(!isLoadingInit && !isLoadingMore && isMatchIdsLoading ) ? (
+            {(allMatchInfo.length === 0 && isMatchIdsLoading) ? (
               <LoadingSpinner/> 
             ) : (allMatchInfo.length > 0 ) ? (
               <>
