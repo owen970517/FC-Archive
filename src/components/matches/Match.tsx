@@ -21,13 +21,13 @@ dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
+  const { allMatchInfo, type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
-  const {data:matchIds, isLoading} = useQuery<string[]>({
+  const {data:matchIds, isLoading:isMatchIdsLoading} = useQuery<string[]>({
     queryKey : ['matchId',{ouid,type,offset}],
     queryFn : () => fetchMatchId({ouid,type,offset}),
     enabled : !!ouid
@@ -58,7 +58,7 @@ const Match = () => {
       }
     }
   }, [allQueriesCompleted,type,ouid]);
-  
+  console.log(allMatchInfo,matchDetails)
   return (
     <>
       <Header/>
@@ -71,17 +71,19 @@ const Match = () => {
           <>
             <UserInfo/>
             <MatchType/>
-            {(!isLoadingInit && !isLoadingMore && isLoading) ? (
+            {(!isLoadingInit && !isLoadingMore && isMatchIdsLoading ) ? (
               <LoadingSpinner/> 
-            ) : matchDetails.length > 0 ? (
+            ) : (allMatchInfo.length > 0 ) ? (
               <>
                 <Avarage/>
                 <MatchList/>
               </>
             ) : 
-              <Wrapper>
-                <h1>기록된 전적이 없습니다.</h1>
-              </Wrapper>
+              (matchDetails.length === 0 && 
+                <Wrapper>
+                  <h1>기록된 전적이 없습니다.</h1>
+                </Wrapper>
+              )
             }
           </>
       }
