@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import styled from 'styled-components'
@@ -11,10 +11,12 @@ import { matchActions } from '../../store/matchSlice'
 import { userActions } from '../../store/userSlice'
 import LoadingSpinner from '../../common/LoadingSpinner'
 import { useNavigate } from 'react-router-dom'
+import { fetchMatchId } from '../../apis/getMatch'
+import { useQuery } from '@tanstack/react-query'
 
 const MatchList = () => {
   const dispatch = useDispatch();
-  const {allMatchInfo,openList,offset,isLoadingMore} = useSelector((state:RootState) => state.matches)
+  const {allMatchInfo,openList,offset,type} = useSelector((state:RootState) => state.matches)
   const nav = useNavigate();
   const {ouid} = useSelector((state:RootState) => state.user)
   const handleLoadMore = () => {
@@ -31,6 +33,12 @@ const MatchList = () => {
     dispatch(userActions.setOuid(id))
   }
 
+  const { isLoading: isMatchIdsLoading} = useQuery<string[]>({
+    queryKey: ['matchId', { ouid, type, offset }],
+    queryFn: () => fetchMatchId({ ouid, type, offset }),
+    enabled: !!ouid,
+  });
+  
   return (
     <>
       {
@@ -59,7 +67,7 @@ const MatchList = () => {
               </MatchLists>
               {openList.map((now, idx) => now === match.matchId && <MatchDetail key={idx} match={match}/>)}
               {isLast && (
-                isLoadingMore ? <LoadingSpinner/> :
+                isMatchIdsLoading ? <LoadingSpinner/> :
                 <ButtonWrapper>
                   <MoreButton onClick={handleLoadMore}>더 보기</MoreButton>
                 </ButtonWrapper>

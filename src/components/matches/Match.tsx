@@ -21,17 +21,17 @@ dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { allMatchInfo, type, offset,isLoadingMore,isLoadingInit } = useSelector((state: RootState) => state.matches);
+  const { allMatchInfo, type, offset, isLoadingInit } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
-  const {data:matchIds, isLoading:isMatchIdsLoading, refetch:refetchMatchIds } = useQuery<string[]>({
-    queryKey : ['matchId',{ouid,type,offset}],
-    queryFn : () => fetchMatchId({ouid,type,offset}),
-    enabled : !!ouid
-  })
+  const { data: matchIds, isLoading: isMatchIdsLoading } = useQuery<string[]>({
+    queryKey: ['matchId', { ouid, type, offset }],
+    queryFn: () => fetchMatchId({ ouid, type, offset }),
+    enabled: !!ouid,
+  });
 
   const matchDetails = useQueries<IMatchInfo[]>({
     queries: matchIds?.map(id => ({
@@ -44,27 +44,21 @@ const Match = () => {
     if (matchDetails.length > 0) {
       const allSuccess = matchDetails.every(query => query.isSuccess);
       setAllQueriesCompleted(allSuccess);
+    } else {
+      dispatch(matchActions.setIsLoadingInit(false));
     }
-  }, [matchDetails]);
+  }, [dispatch, matchDetails]);
 
   useEffect(() => {
     if (allQueriesCompleted) {
       const allMatchDetailsData = matchDetails.map(query => query.data);
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
       if (isLoadingInit) {
-        dispatch(matchActions.setIsLoadingInit(false))
-      } else if(isLoadingMore) {
-        dispatch(matchActions.setIsLoadingMore(false))
+        dispatch(matchActions.setIsLoadingInit(false));
       }
     }
-  }, [allQueriesCompleted,dispatch]);
-  
-  useEffect(() => {
-    if (ouid) {
-      setAllQueriesCompleted(false);
-      refetchMatchIds();
-    }
-  }, [type, offset, ouid, refetchMatchIds]);
+    setAllQueriesCompleted(false);
+  }, [allQueriesCompleted, type, offset, ouid]);
 
   return (
     <>
@@ -88,7 +82,7 @@ const Match = () => {
             ) : 
               (matchDetails.length === 0 && 
                 <Wrapper>
-                  <h1>기록된 전적이 없습니다.</h1>
+                  <h1>최근 1달 전적이 없습니다.</h1>
                 </Wrapper>
               )
             }
