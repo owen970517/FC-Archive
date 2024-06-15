@@ -12,8 +12,8 @@ import MatchList from './MatchList';
 import { matchActions } from '../../store/matchSlice';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import styled from 'styled-components';
-import { useQueries, useQuery } from '@tanstack/react-query';
-import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
+import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query';
+import { IPages, MatchIdResponse, fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
 import { IMatchInfo } from '../../types/matchInfo';
 
 dayjs.extend(relativeTime);
@@ -21,49 +21,64 @@ dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { allMatchInfo, type, offset, isLoadingInit } = useSelector((state: RootState) => state.matches);
+  const { allMatchInfo, type, offset } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
-  const { data: matchIds, isLoading: isMatchIdsLoading } = useQuery<string[]>({
-    queryKey: ['matchId', { ouid, type, offset }],
-    queryFn: () => fetchMatchId({ ouid, type, offset }),
+  
+  // const { data: matchIds, isLoading: isMatchIdsLoading } = useQuery<string[]>({
+  //   queryKey: ['matchId', { ouid, type, offset }],
+  //   queryFn: () => fetchMatchId({ ouid, type, offset }),
+  //   enabled: !!ouid,
+  // });
+
+  const {
+    data: matchIdsData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading: isMatchIdsLoading,
+  } = useInfiniteQuery({
+    queryKey: ['matchId', { ouid, type }],
+    queryFn: ({ pageParam = 0 }) => fetchMatchId({ ouid, type, offset: pageParam }),
+    initialPageParam : 0,
+    getNextPageParam: (lastPage) => lastPage.nextOffset,
     enabled: !!ouid,
   });
+
+  const matchIds = matchIdsData?.pages[matchIdsData?.pages.length - 1].data;
 
   const matchDetails = useQueries<IMatchInfo[]>({
     queries: matchIds?.map(id => ({
       queryKey: ['matchDetails', id],
       queryFn: () => fetchMatchDetails(id),
     })) || []
-  });
-
+  })
+  
   useEffect(() => {
     if (matchDetails.length > 0) {
       const allSuccess = matchDetails.every(query => query.isSuccess);
       setAllQueriesCompleted(allSuccess);
-    } else {
-      dispatch(matchActions.setIsLoadingInit(false));
     }
-  }, [dispatch, matchDetails]);
+  }, [matchDetails]);
 
   useEffect(() => {
     if (allQueriesCompleted) {
       const allMatchDetailsData = matchDetails.map(query => query.data);
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
-      if (isLoadingInit) {
-        dispatch(matchActions.setIsLoadingInit(false));
-      }
     }
+  }, [allQueriesCompleted]);
+  
+  useEffect(() => {
     setAllQueriesCompleted(false);
-  }, [allQueriesCompleted, type, offset, ouid]);
+  },[type, offset, ouid])
 
   return (
     <>
       <Header/>
-      {isLoadingInit ? <LoadingSpinner/> : 
+      {
         ouid === '' ? 
           <ErrContainer>
             <h1>{nickname}은 존재하지 않는 구단주입니다.</h1>
@@ -72,12 +87,12 @@ const Match = () => {
           <>
             <UserInfo/>
             <MatchType/>
-            {(allMatchInfo.length === 0 && isMatchIdsLoading) ? (
+            {(isMatchIdsLoading) ? (
               <LoadingSpinner/> 
             ) : (allMatchInfo.length > 0 ) ? (
               <>
                 <Avarage/>
-                <MatchList/>
+                <MatchList fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
               </>
             ) : 
               (matchDetails.length === 0 && 

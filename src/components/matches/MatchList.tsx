@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import styled from 'styled-components'
@@ -14,14 +14,14 @@ import { useNavigate } from 'react-router-dom'
 import { fetchMatchId } from '../../apis/getMatch'
 import { useQuery } from '@tanstack/react-query'
 
-const MatchList = () => {
+
+const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:any) => {
   const dispatch = useDispatch();
   const {allMatchInfo,openList,offset,type} = useSelector((state:RootState) => state.matches)
   const nav = useNavigate();
   const {ouid} = useSelector((state:RootState) => state.user)
   const handleLoadMore = () => {
     dispatch(matchActions.setOffset(offset+10))
-    dispatch(matchActions.setIsLoadingMore(true))
   }
 
   const handleToggleDetail = (id:string) => {
@@ -33,11 +33,11 @@ const MatchList = () => {
     dispatch(userActions.setOuid(id))
   }
 
-  const { isLoading: isMatchIdsLoading} = useQuery<string[]>({
-    queryKey: ['matchId', { ouid, type, offset }],
-    queryFn: () => fetchMatchId({ ouid, type, offset }),
-    enabled: !!ouid,
-  });
+  // const { isLoading: isMatchIdsLoading} = useQuery<string[]>({
+  //   queryKey: ['matchId', { ouid, type, offset }],
+  //   queryFn: () => fetchMatchId({ ouid, type, offset }),
+  //   enabled: !!ouid,
+  // });
   
   return (
     <>
@@ -66,13 +66,15 @@ const MatchList = () => {
                 </MatchItem>
               </MatchLists>
               {openList.map((now, idx) => now === match.matchId && <MatchDetail key={idx} match={match}/>)}
-              {isLast && (
-                isMatchIdsLoading ? <LoadingSpinner/> :
+              {isLast && hasNextPage && (
                 <ButtonWrapper>
-                  <MoreButton onClick={handleLoadMore}>더 보기</MoreButton>
+                  {isFetchingNextPage ? (
+                    <LoadingSpinner/>
+                  ) : (
+                    <MoreButton onClick={() => fetchNextPage()}>더 보기</MoreButton>
+                  )}
                 </ButtonWrapper>
-                )
-              }
+              )}
             </React.Fragment>
           )
         })}
@@ -123,6 +125,9 @@ const Arrow = styled.img`
 const UserNickName = styled.span`
   font-size: 16px;
   cursor: pointer;
+  &:hover {
+    color : #fff;
+  }
 `
 const ButtonWrapper = styled.div`
   display: flex;
