@@ -11,18 +11,12 @@ import { matchActions } from '../../store/matchSlice'
 import { userActions } from '../../store/userSlice'
 import LoadingSpinner from '../../common/LoadingSpinner'
 import { useNavigate } from 'react-router-dom'
-import { fetchMatchId } from '../../apis/getMatch'
-import { useQuery } from '@tanstack/react-query'
-
 
 const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:any) => {
   const dispatch = useDispatch();
-  const {allMatchInfo,openList,offset,type} = useSelector((state:RootState) => state.matches)
+  const {allMatchInfo,openList} = useSelector((state:RootState) => state.matches)
   const nav = useNavigate();
   const {ouid} = useSelector((state:RootState) => state.user)
-  const handleLoadMore = () => {
-    dispatch(matchActions.setOffset(offset+10))
-  }
 
   const handleToggleDetail = (id:string) => {
     dispatch(matchActions.setHandleOpen(id))
@@ -32,12 +26,6 @@ const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:any) => {
     dispatch(matchActions.initState())
     dispatch(userActions.setOuid(id))
   }
-
-  // const { isLoading: isMatchIdsLoading} = useQuery<string[]>({
-  //   queryKey: ['matchId', { ouid, type, offset }],
-  //   queryFn: () => fetchMatchId({ ouid, type, offset }),
-  //   enabled: !!ouid,
-  // });
   
   return (
     <>

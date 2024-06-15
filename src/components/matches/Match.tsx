@@ -12,8 +12,8 @@ import MatchList from './MatchList';
 import { matchActions } from '../../store/matchSlice';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import styled from 'styled-components';
-import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query';
-import { IPages, MatchIdResponse, fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
+import { useInfiniteQuery, useQueries } from '@tanstack/react-query';
+import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
 import { IMatchInfo } from '../../types/matchInfo';
 
 dayjs.extend(relativeTime);
@@ -21,25 +21,20 @@ dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { allMatchInfo, type, offset } = useSelector((state: RootState) => state.matches);
+  const { allMatchInfo, type } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const nickname = urlParams.get('nickname');
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
   
-  // const { data: matchIds, isLoading: isMatchIdsLoading } = useQuery<string[]>({
-  //   queryKey: ['matchId', { ouid, type, offset }],
-  //   queryFn: () => fetchMatchId({ ouid, type, offset }),
-  //   enabled: !!ouid,
-  // });
-
   const {
     data: matchIdsData,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isLoading: isMatchIdsLoading,
+    refetch
   } = useInfiniteQuery({
     queryKey: ['matchId', { ouid, type }],
     queryFn: ({ pageParam = 0 }) => fetchMatchId({ ouid, type, offset: pageParam }),
@@ -70,11 +65,11 @@ const Match = () => {
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
     }
   }, [allQueriesCompleted]);
-  
+
   useEffect(() => {
     setAllQueriesCompleted(false);
-  },[type, offset, ouid])
-
+  },[ouid,type])
+  
   return (
     <>
       <Header/>
