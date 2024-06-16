@@ -34,7 +34,6 @@ const Match = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading: isMatchIdsLoading,
-    refetch
   } = useInfiniteQuery({
     queryKey: ['matchId', { ouid, type }],
     queryFn: ({ pageParam = 0 }) => fetchMatchId({ ouid, type, offset: pageParam }),
@@ -51,7 +50,7 @@ const Match = () => {
       queryFn: () => fetchMatchDetails(id),
     })) || []
   })
-  console.log(matchIds,matchDetails,allMatchInfo,allQueriesCompleted)
+
   useEffect(() => {
     if (matchDetails.length > 0) {
       const allSuccess = matchDetails.every(query => query.isSuccess);

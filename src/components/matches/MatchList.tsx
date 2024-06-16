@@ -12,7 +12,13 @@ import { userActions } from '../../store/userSlice'
 import LoadingSpinner from '../../common/LoadingSpinner'
 import { useNavigate } from 'react-router-dom'
 
-const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:any) => {
+interface InfiniteQueryProps {
+  fetchNextPage : () => void;
+  hasNextPage : boolean;
+  isFetchingNextPage : boolean
+}
+
+const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:InfiniteQueryProps) => {
   const dispatch = useDispatch();
   const {allMatchInfo,openList} = useSelector((state:RootState) => state.matches)
   const nav = useNavigate();
@@ -26,7 +32,7 @@ const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:any) => {
     dispatch(matchActions.initState())
     dispatch(userActions.setOuid(id))
   }
-  
+ 
   return (
     <>
       {
