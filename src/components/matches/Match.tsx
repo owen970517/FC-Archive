@@ -51,14 +51,14 @@ const Match = () => {
       queryFn: () => fetchMatchDetails(id),
     })) || []
   })
-  
+  console.log(matchIds,matchDetails,allMatchInfo,allQueriesCompleted)
   useEffect(() => {
     if (matchDetails.length > 0) {
       const allSuccess = matchDetails.every(query => query.isSuccess);
       setAllQueriesCompleted(allSuccess);
     }
   }, [matchDetails]);
-
+  
   useEffect(() => {
     if (allQueriesCompleted) {
       const allMatchDetailsData = matchDetails.map(query => query.data);
@@ -67,8 +67,10 @@ const Match = () => {
   }, [allQueriesCompleted]);
 
   useEffect(() => {
-    setAllQueriesCompleted(false);
-  },[ouid,type])
+    if (allQueriesCompleted) {
+      setAllQueriesCompleted(false)
+    }
+  },[allQueriesCompleted, type, ouid])
   
   return (
     <>
