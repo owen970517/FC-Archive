@@ -50,6 +50,9 @@ export const enTokrTeam: { [leagueId: number]: Translation }  =
           "Luton":'루턴',
           "Burnley":'번리',
           "Sheff Utd":'셰필드',
+          "Ipswich" : '입스위치 타운',
+          "Leicester" : '레스터 시티',
+          "Southampton":'사우샘프턴',
         }
       },
       87: {
