@@ -23,7 +23,6 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
         onSuccess : (ouid,nickname) => {
           dispatch(userActions.setOuid(ouid));
           dispatch(matchActions.initState());
-          dispatch(matchActions.setIsLoadingInit(true));
           nav(`/search?nickname=${nickname}`);
         }
       })

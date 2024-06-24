@@ -32,7 +32,6 @@ const UserInput = () => {
     onSuccess : (ouid) => {
       dispatch(matchActions.initState());
       dispatch(userActions.setOuid(ouid));
-      dispatch(matchActions.setIsLoadingInit(true));
       nav(`/search?nickname=${user}`);
       setValue('user', '');
       addSearchBox(user,prevSearched);
@@ -51,8 +50,8 @@ const UserInput = () => {
     initIndex();
   }
 
-  const onSubmit = async (data: IForm) => {
-    mutation.mutate(data.user)
+  const onSubmit = (data: IForm) => {
+    mutation.mutateAsync(data.user)
   };
 
 

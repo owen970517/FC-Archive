@@ -2,11 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IMatchInfo } from '../types/matchInfo';
 
 interface IMatchState {
-    offset: number;
     isFocus: boolean;
     isModal: boolean;
-    isLoadingInit: boolean;
-    isLoadingMore: boolean;
     type: number;
     allMatchId: string[];
     allMatchInfo: IMatchInfo[];
@@ -14,11 +11,8 @@ interface IMatchState {
 }
 
 const initialMatchState:IMatchState = {
-    offset : 0,
     isFocus : false,
     isModal :false,
-    isLoadingInit : false,
-    isLoadingMore : false,
     type :50,
     allMatchId : [],
     allMatchInfo : [],
@@ -30,24 +24,14 @@ const matchSlice = createSlice({
     initialState : initialMatchState,
     reducers : {
         initState(state) {
-            state.offset = 0
             state.type=50
             state.isFocus = false
             state.allMatchId=[]
             state.allMatchInfo=[]
             state.openList = []
         },
-        setOffset(state,action) {
-            state.offset = action.payload
-        },
-        setIsLoadingInit(state,action) {
-            state.isLoadingInit = action.payload
-        },
         setIsFocus(state,action) {
             state.isFocus = action.payload
-        },
-        setIsLoadingMore(state,action) {
-            state.isLoadingMore = action.payload
         },
         setIsModal(state,action) {
             state.isModal = action.payload
