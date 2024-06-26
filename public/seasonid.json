@@ -1,18 +1,23 @@
 [
     {
         "seasonId" : 100,
-        "className" : "ICONTM (ICON The Moment)",
+        "className" : "ICON TM (ICON The Moment)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icontm.png"
     },
     {
         "seasonId" : 110,
-        "className" : "ICONTM_B (ICON The Moment Bound)",
+        "className" : "ICON TM(제한) (ICON The Moment Bound)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icontm_b.png"
     },
     {
         "seasonId" : 101,
         "className" : "ICON (ICON)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/icon.png"
+    },
+    {
+        "seasonId" : 815,
+        "className" : "EU24 (UEFA EURO 2024)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/eu24.png"
     },
     {
         "seasonId" : 818,
@@ -216,7 +221,7 @@
     },
     {
         "seasonId" : 213,
-        "className" : "Man City ICON (Man City ICON)",
+        "className" : "MCFC ICON (Man City ICON)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/mcicon.png"
     },
     {
@@ -251,7 +256,7 @@
     },
     {
         "seasonId" : 808,
-        "className" : "24 TOTN (24 Team Of The Nominated)",
+        "className" : "24 TOTY-N (24 Team Of The Nominated)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24totn.png"
     },
     {
@@ -261,7 +266,7 @@
     },
     {
         "seasonId" : 279,
-        "className" : "23 TOTN (23 Team Of The Nominated)",
+        "className" : "23 TOTY-N (23 Team Of The Nominated)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23totn.png"
     },
     {
@@ -271,7 +276,7 @@
     },
     {
         "seasonId" : 259,
-        "className" : "22 TOTN (22 Team Of The Nominated)",
+        "className" : "22 TOTY-N (22 Team Of The Nominated)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22totn.png"
     },
     {
@@ -281,7 +286,7 @@
     },
     {
         "seasonId" : 241,
-        "className" : "21 TOTN (21 Team Of The Nominated)",
+        "className" : "21 TOTY-N (21 Team Of The Nominated)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21totn.png"
     },
     {
@@ -291,7 +296,7 @@
     },
     {
         "seasonId" : 222,
-        "className" : "20 TOTN (20 Team Of The Nominated)",
+        "className" : "20 TOTY-N (20 Team Of The Nominated)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20totn.png"
     },
     {
@@ -400,6 +405,11 @@
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/2012kh.png"
     },
     {
+        "seasonId" : 514,
+        "className" : "24KLeague (24KLeague)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24kl.png"
+    },
+    {
         "seasonId" : 512,
         "className" : "23KLeague (23KLeague)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23kl.png"
@@ -421,22 +431,22 @@
     },
     {
         "seasonId" : 805,
-        "className" : "23KLB (23 K-League Best)",
+        "className" : "23KB (23 K-League Best)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23klb.png"
     },
     {
         "seasonId" : 277,
-        "className" : "22KLB (22 K-League Best)",
+        "className" : "22KB (22 K-League Best)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/22klb.png"
     },
     {
         "seasonId" : 257,
-        "className" : "21KLB (21 K-League Best)",
+        "className" : "21KB (21 K-League Best)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/21klb.png"
     },
     {
         "seasonId" : 239,
-        "className" : "20KLB (20 K-League Best)",
+        "className" : "20KB (20 K-League Best)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20klb.png"
     },
     {
@@ -456,27 +466,27 @@
     },
     {
         "seasonId" : 506,
-        "className" : "20 PL (20 Premium Live)",
+        "className" : "20 PLA (20 Premium Live)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/20pla.png"
     },
     {
         "seasonId" : 503,
-        "className" : "19 PLC–S (19 Premium Live Spring)",
+        "className" : "19 PLS (19 Premium Live Spring)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19pls.png"
     },
     {
         "seasonId" : 502,
-        "className" : "19 PLC–A (19 Premium Live Autumn)",
+        "className" : "19 PLA (19 Premium Live Autumn)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/19pla.png"
     },
     {
         "seasonId" : 501,
-        "className" : "18 PLC–S (18 Premium Live Spring)",
+        "className" : "18 PLS (18 Premium Live Spring)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/18pls.png"
     },
     {
         "seasonId" : 500,
-        "className" : "18 PLC–A (18 Premium Live Autumn)",
+        "className" : "18 PLA (18 Premium Live Autumn)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/plc.png"
     },
     {
