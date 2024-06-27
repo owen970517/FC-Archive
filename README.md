@@ -68,12 +68,26 @@
         </div>
     </details>
 
+### 2. 새로고침 및 뒤로가기 했을 때 매치 리스트를 보여주지 않는 현상 발생
+- 원인 : 리렌더링 시 redux 데이터가 초기화되기 떄문
+- 해결 방법 : useEffect를 사용하여 쿼리스트링이 변경되거나, ouid가 달라졌을 경우 다시 할당하도록 개선
+    <details>
+        <summary><b>👈코드 보기</b></summary>
+        <div markdown="1">
+            <ul>
+                https://github.com/owen970517/FC-Archive/blob/bd93dca5434e9dfd9c9596935de06aadae4caa16/src/components/matches/Match.tsx#L29-L42
+            </ul>
+        </div>
+    </details>
+
 ## 기술스택 
 
 ### Development
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<img src="https://img.shields.io/badge/vercel-black?style=for-the-badge&logo=vercel">
+<img src="https://img.shields.io/badge/redux-purple?style=for-the-badge&logo=redux">
 
 ### Library
 <img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/React Router Dom-3178C6?style=for-the-badge&logo=reactrouterdom&logoColor=white">
