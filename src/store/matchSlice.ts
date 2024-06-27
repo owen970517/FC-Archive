@@ -4,6 +4,7 @@ import { IMatchInfo } from '../types/matchInfo';
 interface IMatchState {
     isFocus: boolean;
     isModal: boolean;
+    isInitLoading : boolean;
     type: number;
     allMatchId: string[];
     allMatchInfo: IMatchInfo[];
@@ -13,6 +14,7 @@ interface IMatchState {
 const initialMatchState:IMatchState = {
     isFocus : false,
     isModal :false,
+    isInitLoading : true,
     type :50,
     allMatchId : [],
     allMatchInfo : [],
@@ -35,6 +37,9 @@ const matchSlice = createSlice({
         },
         setIsModal(state,action) {
             state.isModal = action.payload
+        },
+        setIsInitLoading(state,action) {
+            state.isInitLoading = action.payload
         },
         setType(state,action) {
             state.type = action.payload

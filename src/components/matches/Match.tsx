@@ -15,19 +15,32 @@ import styled from 'styled-components';
 import { useInfiniteQuery, useQueries } from '@tanstack/react-query';
 import { fetchMatchDetails, fetchMatchId } from '../../apis/getMatch';
 import { IMatchInfo } from '../../types/matchInfo';
+import { fetchUserId } from '../../apis/getOuid';
+import { userActions } from '../../store/userSlice';
+import { useSearchParams } from 'react-router-dom';
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Match = () => {
   const dispatch = useDispatch();
-  const { allMatchInfo, type } = useSelector((state: RootState) => state.matches);
+  const { allMatchInfo, type, isInitLoading } = useSelector((state: RootState) => state.matches);
   const { ouid } = useSelector((state: RootState) => state.user);
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const nickname = urlParams.get('nickname');
+  const [name] = useSearchParams();
   const [allQueriesCompleted, setAllQueriesCompleted] = useState(false);
-  
+
+  useEffect(() => {
+    const updateOuid = async () => {
+      const newOuid = await fetchUserId(name.get('nickname')!);
+      if (ouid !== newOuid) {
+        dispatch(matchActions.initState());
+        dispatch(userActions.setOuid(newOuid));
+        dispatch(matchActions.setIsInitLoading(false));
+      }
+    }
+    updateOuid();
+  }, [name]);
+
   const {
     data: matchIdsData,
     fetchNextPage,
@@ -56,7 +69,7 @@ const Match = () => {
       const allSuccess = matchDetails.every(query => query.isSuccess);
       setAllQueriesCompleted(allSuccess);
     }
-  }, [matchDetails]);
+  }, [matchDetails, ouid]);
   
   useEffect(() => {
     if (allQueriesCompleted) {
@@ -70,20 +83,20 @@ const Match = () => {
       setAllQueriesCompleted(false)
     }
   },[allQueriesCompleted, type, ouid])
-  
+
   return (
     <>
       <Header/>
       {
-        ouid === '' ? 
+        (!isInitLoading && ouid === '') ? 
           <ErrContainer>
-            <h1>{nickname}은 존재하지 않는 구단주입니다.</h1>
+            <h1>{name.get('nickname')}은 존재하지 않는 구단주입니다.</h1>
             <h3>다시 한번 확인 후 재시도 해주세요</h3>
           </ErrContainer> : 
           <>
             <UserInfo/>
             <MatchType/>
-            {(isMatchIdsLoading) ? (
+            {isMatchIdsLoading ? (
               <LoadingSpinner/> 
             ) : (allMatchInfo.length > 0 ) ? (
               <>
@@ -91,7 +104,7 @@ const Match = () => {
                 <MatchList fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
               </>
             ) : 
-              (matchDetails.length === 0 && 
+              ((allQueriesCompleted && matchDetails.length === 0) && 
                 <Wrapper>
                   <h1>최근 1달 전적이 없습니다.</h1>
                 </Wrapper>
