@@ -65,7 +65,7 @@ const Match = () => {
   })
 
   useEffect(() => {
-    if (matchDetails.length > 0) {
+    if (matchDetails.length >= 0) {
       const allSuccess = matchDetails.every(query => query.isSuccess);
       setAllQueriesCompleted(allSuccess);
     }
@@ -83,7 +83,7 @@ const Match = () => {
       setAllQueriesCompleted(false)
     }
   },[allQueriesCompleted, type, ouid])
-
+  
   return (
     <>
       <Header/>
