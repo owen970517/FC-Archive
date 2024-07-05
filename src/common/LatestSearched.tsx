@@ -63,6 +63,7 @@ const LatestContainer = styled.div`
     height : 400px;
     border : 1px solid black;
     background-color: #fff;
+    z-index: 1;
     h3 {
         padding : 0 20px;
     }
