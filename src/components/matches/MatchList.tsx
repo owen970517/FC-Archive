@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
-import styled from 'styled-components'
+import { CSSTransition } from 'react-transition-group';
+import styled, { css } from 'styled-components';
 import { IMatchInfo } from '../../types/matchInfo'
 import dayjs from 'dayjs'
 import Up from '../../assets/up.svg'
@@ -59,7 +60,16 @@ const MatchList = ({ fetchNextPage, hasNextPage, isFetchingNextPage }:InfiniteQu
                   }
                 </MatchItem>
               </MatchLists>
-              {openList.map((now, idx) => now === match.matchId && <MatchDetail key={idx} match={match}/>)}
+              <CSSTransition
+                in={openList.includes(match.matchId)}
+                timeout={300}
+                classNames="detail"
+                unmountOnExit
+              >
+                <MatchDetailWrapper>
+                  <MatchDetail match={match} />
+                </MatchDetailWrapper>
+              </CSSTransition>
               {isLast && hasNextPage && (
                 <ButtonWrapper>
                   {isFetchingNextPage ? (
@@ -136,7 +146,27 @@ const MoreButton = styled.button`
   padding : 10px;
   border: none;
   cursor: pointer;
-
 `
+
+const MatchDetailWrapper = styled.div`
+  &.detail-enter {
+    opacity: 0;
+    max-height: 0;
+  }
+  &.detail-enter-active {
+    opacity: 1;
+    max-height: 500px; /* 원하는 최종 높이 설정 */
+    transition: opacity 300ms, max-height 300ms;
+  }
+  &.detail-exit {
+    opacity: 1;
+    max-height: 500px;
+  }
+  &.detail-exit-active {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 300ms, max-height 300ms;
+  }
+`;
 
 export default MatchList
