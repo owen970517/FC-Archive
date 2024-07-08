@@ -8,7 +8,7 @@ import Avarage from '../infos/Avarage';
 import Header from '../../common/Header';
 import UserInfo from '../infos/UserInfo';
 import MatchType from '../../common/MatchType';
-import MatchList from './MatchList';
+import MatchListContainer from './MatchListContainer';
 import { matchActions } from '../../store/matchSlice';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import styled from 'styled-components';
@@ -101,10 +101,10 @@ const Match = () => {
             ) : (allMatchInfo.length > 0 ) ? (
               <>
                 <Avarage/>
-                <MatchList fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
+                <MatchListContainer fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
               </>
             ) : 
-              ((allQueriesCompleted && matchDetails.length === 0) && 
+              ((!isInitLoading && allQueriesCompleted && matchDetails.length === 0) && 
                 <Wrapper>
                   <h1>최근 1달 전적이 없습니다.</h1>
                 </Wrapper>
