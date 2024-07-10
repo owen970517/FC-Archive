@@ -15,7 +15,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     const dispatch = useDispatch()
     const {isModal} = useSelector((state:RootState) => state.matches)
     const [season , setSeason] = useState<ISeason[]>([]);
-    const [imgUrl, setImgUrl] = useState(`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${player.spId}.png`)
+    const [imgUrl, setImgUrl] = useState(`https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${player!.spId}.png`)
     const handleClose = () => {
         dispatch(matchActions.setIsModal(!isModal))
     }

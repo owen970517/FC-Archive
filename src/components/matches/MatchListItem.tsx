@@ -30,7 +30,7 @@ const MatchListItem = ({match}:{match:IMatchInfo}) => {
         <h3>{ouid === match.matchInfo[0].ouid ? match.matchInfo[0].matchDetail.matchResult : match.matchInfo[1].matchDetail.matchResult}</h3>
         <p>{dayjs(match.matchDate).fromNow()}</p>
       </MatchInfo>
-      <h3>
+      <h3 style={{flex:2, margin : "0 auto"}}>
         <UserNickName 
           onClick={() => {clickNickname(match.matchInfo[0].ouid); nav(`/search?nickname=${match.matchInfo[0].nickname}`);}}>
             {match.matchInfo[0]?.nickname}</UserNickName> {match?.matchInfo[0]?.shoot?.goalTotal !== null ? match?.matchInfo[0]?.shoot?.goalTotal : '몰수패'} : {match.matchInfo[1]?.shoot?.goalTotal !== null ? match.matchInfo[1]?.shoot?.goalTotal : '몰수패'}
@@ -66,6 +66,7 @@ const MatchItem = styled.div<{result: string}>`
     flex: 1;
     text-align: center; 
   }
+
 `;
 
 const MatchInfo = styled.div`
@@ -77,7 +78,7 @@ const MatchInfo = styled.div`
   }
   
   p {
-    margin-top: 0;
+    margin-top: 0;  
   }
 `;
 
@@ -91,6 +92,9 @@ const UserNickName = styled.span`
   cursor: pointer;
   &:hover {
     color : #fff;
+  }
+  @media (max-width: 768px) {
+    font-size: 13px;
   }
 `
 export default MatchListItem

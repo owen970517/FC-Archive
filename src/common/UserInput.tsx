@@ -81,7 +81,7 @@ const UserInput = () => {
 };
 const SearchContainer = styled.div`
   position: relative;
-`
+`;
 
 const SearchBar = styled.form`
   width: 490px;
@@ -107,6 +107,7 @@ const SearchBar = styled.form`
     font-size: 17px;
     outline: none;
   }
+
   button {
     color: #ffffff;
     background-color: #007be9;
@@ -120,6 +121,21 @@ const SearchBar = styled.form`
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+
+    input {
+      font-size: 15px;
+    }
+
+    button {
+      width: 45px;
+      height: 40px;
+    }
   }
 `;
 export default UserInput

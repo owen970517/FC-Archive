@@ -56,9 +56,15 @@ const AvaragesContainer = styled.div`
   align-items: center;
   background-color: #f4f4f4;
   border-radius: 10px;
-  margin : 10px auto;
+  margin: 10px auto;
   padding: 10px 0;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    margin: 10px auto;
+  }
 `;
+
 const AvarageCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,6 +74,11 @@ const AvarageCard = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 5px;
   border-radius: 10px;
+  margin: 10px 0;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
 const AvarageTitle = styled.p`
@@ -75,12 +86,20 @@ const AvarageTitle = styled.p`
   font-weight: 800;
   color: #333;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const AvarageValue = styled.p`
   font-size: 20px;
   font-weight: 800;
-  color : var(--nameColor);
+  color: var(--nameColor);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export default Avarage

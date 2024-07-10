@@ -50,6 +50,12 @@ const CategoryBtn = styled.button<{$isActive:boolean}>`
   font-weight: 600;
   padding : 20px;
   border-radius: 10px;
+  
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding : 10px;
+    font-weight: 800;
+  }
 `;
 
 export default MatchDetail

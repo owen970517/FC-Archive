@@ -8,18 +8,18 @@ const AnalyzeGame = ({info}:{info:IMatchInfo}) => {
     
     const getControllerImage = (controllerType:string) => {
         return controllerType === 'keyboard' ? (
-            <img src={Keyboard} alt='keyboard' width={40} height={40}/>
+            <img src={Keyboard} alt='keyboard'/>
         ) : (
-            <img src={Pad} alt='pad' width={40} height={40}/>
+            <img src={Pad} alt='pad'/>
         );
     };
 
   return (
     <MatchInfo>
         <InfoItem>
-            <h3>{getControllerImage(info.matchInfo[0].matchDetail.controller!)}</h3>
+            {getControllerImage(info.matchInfo[0].matchDetail.controller!)}
             <h2>컨트롤러</h2>
-            <h3>{getControllerImage(info.matchInfo[1].matchDetail.controller!)}</h3> 
+            {getControllerImage(info.matchInfo[1].matchDetail.controller!)} 
         </InfoItem>
         <InfoItem>
             <h3>{info.matchInfo[0].shoot.shootTotal}</h3>
@@ -85,11 +85,29 @@ const InfoItem = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    h2,h3 {
+    img {
+        flex : 1;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+    }
+    h3 {
         flex : 1;
         text-align: center;
     }
+    h2 {
+        flex : 2;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
 `
 
 export default AnalyzeGame

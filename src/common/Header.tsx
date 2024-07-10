@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
   align-items: center;
 `
 
-const MainText = styled.h1`
+const MainText = styled.p`
   text-align: center;
   font-size: 40px;
   font-weight: 800;
@@ -35,6 +35,10 @@ const MainText = styled.h1`
   margin-bottom: 20px;
   color : var(--textDefault);
   cursor:pointer;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -49,5 +53,9 @@ const League = styled(Link)<{$isActive:boolean}>`
   background-color: ${(props) => props.$isActive ? 'black' : 'transparent'};
   padding: 10px;
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `
 export default Header

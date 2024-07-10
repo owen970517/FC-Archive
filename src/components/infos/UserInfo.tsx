@@ -81,50 +81,93 @@ const UserContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    @media (max-width: 768px) {
+        height: auto;
+        padding: 20px;
+    }
 `
 const User = styled.div`
     display: flex;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        align-items: center;
+    }
 `
 const Info = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    float:left;
+    float: left;
     margin-left: 10px;
+
+    @media (max-width: 768px) {
+        justify-content: baseline;
+        margin-left: 10px;
+        h1 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+    }
 `
 const ProfileImageWrapper = styled.div`
-  width: 150px;
-  height : 150px;
-  border-radius: 50%;
-  overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        width: 100px;
+        height: 100px;
+    }
 `
 const ProfileImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `
 const RankContainer = styled.div`
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+        align-items: center;
+    }
 `
 const RankType = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+        align-items: center;
+        
+        & > button {
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    }
 `
-const RankBtn = styled.button<{$active:boolean}>`
+const RankBtn = styled.button<{$active: boolean}>`
     padding: 10px 10px; 
-    background-color: ${props => props.$active ? '#000': ''};
-    color: ${props => props.$active ? 'var(--textDefault)': '#000'};
+    background-color: ${props => props.$active ? '#000' : ''};
+    color: ${props => props.$active ? 'var(--textDefault)' : '#000'};
     font-weight: 600;
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
     transition: background-color 0.3s ease;
+
     &:hover {
         background-color: #000; 
-        color : var(--textDefault);
+        color: var(--textDefault);
+    }
+
+    @media (max-width: 768px) {
+        text-align: center;
     }
 `
 
@@ -133,7 +176,18 @@ const RankInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
 
+    @media (max-width: 768px) {
+        text-align: center;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+    }   
+`
 
 export default UserInfo

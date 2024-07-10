@@ -60,5 +60,10 @@ const Button = styled.button<{$active:boolean}>`
             width: 100%;
         }
     }
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        font-weight: 800;
+    }
 `
 export default MatchType

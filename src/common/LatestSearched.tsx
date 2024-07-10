@@ -55,19 +55,27 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
 }
 
 const LatestContainer = styled.div`
-    position: absolute;
-    top: 80px;
-    left: 10px;
-    border-radius: 20px;
-    width : 470px;
-    height : 400px;
-    border : 1px solid black;
-    background-color: #fff;
-    z-index: 1;
-    h3 {
-        padding : 0 20px;
-    }
-`
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  border-radius: 20px;
+  width: 470px;
+  height: 400px;
+  border: 1px solid black;
+  background-color: #fff;
+  z-index: 1;
+
+  h3 {
+    padding: 0 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    left: 5%;
+    top: 70px;
+    height: auto;
+  }
+`;
 
 const SectionTitle = styled.div`
   width: 90%;
@@ -78,31 +86,50 @@ const SectionTitle = styled.div`
   font-weight: 700;
   color: #53585d;
   border-bottom: 1px solid #e7e7e7;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const LatestItem = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  cursor: pointer;
+
+  p {
+    font-size: 20px;
+  }
+
+  &.selected, &:hover {
+    background-color: rgba(128, 128, 128, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+
     p {
-        font-size: 20px;
+      font-size: 18px;
     }
-    &.selected, &:hover {
-        background-color: rgba(128, 128, 128, 0.1);
-    }
-`
+  }
+`;
+
 const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const DeleteBtn = styled.button`
-    cursor: pointer;
-    border: none;
-    background: none;
-`
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
 
 export default LatestSearched
