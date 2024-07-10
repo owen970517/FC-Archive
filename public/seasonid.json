@@ -310,6 +310,11 @@
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/18toty.png"
     },
     {
+        "seasonId" : 820,
+        "className" : "24 TOTS (24 Team Of The Season)",
+        "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/24tots.png"
+    },
+    {
         "seasonId" : 287,
         "className" : "23 TOTS (23 Team Of The Season)",
         "seasonImg" : "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/season/23tots.png"
