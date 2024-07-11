@@ -57,9 +57,8 @@ const LatestSearched = ({nowIdx} : {nowIdx:number}) => {
 const LatestContainer = styled.div`
   position: absolute;
   top: 80px;
-  left: 10px;
   border-radius: 20px;
-  width: 470px;
+  width: 490px;
   height: 400px;
   border: 1px solid black;
   background-color: #fff;
@@ -70,10 +69,10 @@ const LatestContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 90%;
-    left: 5%;
-    top: 70px;
+    width: 100%;
+    top: 50px;
     height: auto;
+    margin : 0 auto;
   }
 `;
 
@@ -111,7 +110,7 @@ const LatestItem = styled.div`
     padding: 0 10px;
 
     p {
-      font-size: 18px;
+      font-size: 12px;
     }
   }
 `;

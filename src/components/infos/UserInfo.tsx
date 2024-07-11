@@ -84,7 +84,6 @@ const UserContainer = styled.div`
 
     @media (max-width: 768px) {
         height: auto;
-        padding: 20px;
     }
 `
 const User = styled.div`
@@ -106,10 +105,10 @@ const Info = styled.div`
         justify-content: baseline;
         margin-left: 10px;
         h1 {
-            font-size: 20px;
+            font-size: 14px;
         }
         h3 {
-            font-size: 16px;
+            font-size: 12px;
         }
     }
 `
@@ -120,8 +119,8 @@ const ProfileImageWrapper = styled.div`
     overflow: hidden;
 
     @media (max-width: 768px) {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
 `
 const ProfileImg = styled.img`
@@ -145,10 +144,6 @@ const RankType = styled.div`
     @media (max-width: 768px) {
         align-items: center;
         
-        & > button {
-            margin-bottom: 10px;
-            margin-left: 10px;
-        }
     }
 `
 const RankBtn = styled.button<{$active: boolean}>`
@@ -167,7 +162,8 @@ const RankBtn = styled.button<{$active: boolean}>`
     }
 
     @media (max-width: 768px) {
-        text-align: center;
+        font-size: 10px;
+        padding: 5px 5px;
     }
 `
 
@@ -181,11 +177,11 @@ const RankInfo = styled.div`
         text-align: center;
 
         img {
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
         }
         h3 {
-            font-size: 16px;
+            font-size: 12px;
         }
     }   
 `

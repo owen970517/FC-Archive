@@ -72,7 +72,7 @@ const UserInput = () => {
           onKeyDown={onKeydown}
         />
         <button type='submit'>
-          <SearchIcon size={21}/>
+          <SearchIcon/>
         </button>
       </SearchBar>
       {isFocus && <LatestSearched nowIdx={keyBoardIdx!}/>}
@@ -121,20 +121,30 @@ const SearchBar = styled.form`
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 60px;
+    height: 40px;
     padding: 10px;
 
     input {
-      font-size: 15px;
+      font-size: 10px;
     }
 
     button {
-      width: 45px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
     }
   }
 `;

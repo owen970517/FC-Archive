@@ -30,14 +30,14 @@ const MatchListItem = ({match}:{match:IMatchInfo}) => {
         <h3>{ouid === match.matchInfo[0].ouid ? match.matchInfo[0].matchDetail.matchResult : match.matchInfo[1].matchDetail.matchResult}</h3>
         <p>{dayjs(match.matchDate).fromNow()}</p>
       </MatchInfo>
-      <h3 style={{flex:2, margin : "0 auto"}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}>
         <UserNickName 
           onClick={() => {clickNickname(match.matchInfo[0].ouid); nav(`/search?nickname=${match.matchInfo[0].nickname}`);}}>
-            {match.matchInfo[0]?.nickname}</UserNickName> {match?.matchInfo[0]?.shoot?.goalTotal !== null ? match?.matchInfo[0]?.shoot?.goalTotal : '몰수패'} : {match.matchInfo[1]?.shoot?.goalTotal !== null ? match.matchInfo[1]?.shoot?.goalTotal : '몰수패'}
+            {match.matchInfo[0]?.nickname}</UserNickName> <Score>{match?.matchInfo[0]?.shoot?.goalTotal !== null ? match?.matchInfo[0]?.shoot?.goalTotal : '몰수패'}</Score> <p>:</p> <Score>{match.matchInfo[1]?.shoot?.goalTotal !== null ? match.matchInfo[1]?.shoot?.goalTotal : '몰수패'}</Score>
         <UserNickName 
           onClick={() => {clickNickname(match.matchInfo[1].ouid); nav(`/search?nickname=${match.matchInfo[1]?.nickname}`);}}> {match.matchInfo[1]?.nickname}
         </UserNickName>
-      </h3>
+      </div>
       {
         openList.includes(match.matchId) ? <Arrow src={Up} onClick={() => handleToggleDetail(match.matchId)} alt='up'/> : <Arrow src={Down} onClick={() => handleToggleDetail(match.matchId)} alt='down'/>
       }
@@ -80,12 +80,29 @@ const MatchInfo = styled.div`
   p {
     margin-top: 0;  
   }
+
+  @media (max-width : 768px) {
+    h3 {
+    margin-bottom: 5px;
+    font-size: 12px;
+    }
+  
+    p {
+      margin-top: 0;  
+      font-size: 10px;
+      font-weight: 300;
+    }
+  }
 `;
 
 const Arrow = styled.img`
-  width:20px;
-  height: 20px;
+  width:30px;
+  height: 30px;
   cursor: pointer;
+  @media (max-width : 768px) {
+    width: 10px;
+    height: 10px;
+  }
 `
 const UserNickName = styled.span`
   font-size: 16px;
@@ -94,7 +111,27 @@ const UserNickName = styled.span`
     color : #fff;
   }
   @media (max-width: 768px) {
-    font-size: 13px;
+    font-size: 9px;
+    display: inline-block;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
   }
 `
+
+const Score = styled.span`
+  font-size: 20px;
+  margin: 0 10px;
+  vertical-align: middle; 
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+`
+const Colon = styled.p`
+  margin: 0 10px;
+  vertical-align: middle; /* 텍스트 정렬을 위해 */
+  display: inline-block;
+`;
 export default MatchListItem

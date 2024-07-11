@@ -19,13 +19,17 @@ const MainContainer = styled.main`
   align-items: center;
   margin-top: 70px;
 `;
-const MainHeader = styled.h1`
+
+const MainHeader = styled.p`
   text-align: center;
   font-size: 40px;
   font-weight: 800;
   line-height: 1.6;
   margin-bottom: 20px;
   color : var(--textDefault);
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export default Main

@@ -62,7 +62,8 @@ const Button = styled.button<{$active:boolean}>`
     }
 
     @media (max-width: 768px) {
-        font-size: 14px;
+        padding: 10px;
+        font-size: 10px;
         font-weight: 800;
     }
 `

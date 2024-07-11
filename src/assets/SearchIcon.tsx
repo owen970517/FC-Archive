@@ -1,8 +1,6 @@
-const SearchIcon = ({size}: {size: number}) => {
+const SearchIcon = () => {
     return (
         <svg
-            width={size}
-            height={size}
             viewBox='0 0 16 16'
             fill='currentColor'
             preserveAspectRatio='none'

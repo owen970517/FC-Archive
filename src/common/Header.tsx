@@ -25,6 +25,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
 `
 
 const MainText = styled.p`
@@ -37,7 +41,7 @@ const MainText = styled.p`
   cursor:pointer;
 
   @media (max-width: 768px) {
-    font-size: 28px;
+    font-size: 18px;
   }
 `;
 
@@ -55,7 +59,7 @@ const League = styled(Link)<{$isActive:boolean}>`
   border-radius: 10px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 10px;
   }
 `
 export default Header

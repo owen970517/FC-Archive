@@ -35,15 +35,27 @@ const Avarage = () => {
   return (
     <AvaragesContainer>
       <AvarageCard>
-        <AvarageTitle>{allMatchInfo.length}경기 평균 점유율</AvarageTitle>
+        <AvarageTitle>
+          <span>{allMatchInfo.length}경기</span>
+          <span className="mobile-only"> 평균 점유율</span>
+          <span className="desktop-only"> 평균 점유율</span>
+        </AvarageTitle>
         <AvarageValue>{averageData.averagePossession.toFixed(1)}%</AvarageValue>
       </AvarageCard>
       <AvarageCard>
-        <AvarageTitle>{allMatchInfo.length}경기 평균 득점</AvarageTitle>
+        <AvarageTitle>
+          <span>{allMatchInfo.length}경기</span>
+          <span className="mobile-only"> 평균 득점</span>
+          <span className="desktop-only"> 평균 득점</span>
+        </AvarageTitle>
         <AvarageValue>{averageData.averageGoal.toFixed(1)}골</AvarageValue>
       </AvarageCard>
       <AvarageCard>
-        <AvarageTitle>{allMatchInfo.length}경기 평균 실점</AvarageTitle>
+        <AvarageTitle>
+          <span>{allMatchInfo.length}경기</span>
+          <span className="mobile-only"> 평균 실점</span>
+          <span className="desktop-only"> 평균 실점</span>
+        </AvarageTitle>
         <AvarageValue>{averageData.averageConceded.toFixed(1)}골</AvarageValue>
       </AvarageCard>
     </AvaragesContainer>
@@ -77,7 +89,7 @@ const AvarageCard = styled.div`
   margin: 10px 0;
 
   @media (max-width: 768px) {
-    margin-top: 10px;
+    margin: 10px;
   }
 `;
 
@@ -85,10 +97,27 @@ const AvarageTitle = styled.p`
   font-size: 24px;
   font-weight: 800;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 10px;  
+  text-align: center;
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: inline;
+  }
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 10px;
+    margin-bottom: 5px;
+
+    .mobile-only {
+      display: block;
+    }
+
+    .desktop-only {
+      display: none;
+    }
   }
 `;
 
@@ -98,7 +127,7 @@ const AvarageValue = styled.p`
   color: var(--nameColor);
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 10px;
   }
 `;
 
