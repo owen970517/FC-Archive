@@ -129,9 +129,5 @@ const Score = styled.span`
     font-size: 11px;
   }
 `
-const Colon = styled.p`
-  margin: 0 10px;
-  vertical-align: middle; /* 텍스트 정렬을 위해 */
-  display: inline-block;
-`;
+
 export default MatchListItem
