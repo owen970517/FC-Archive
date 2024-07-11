@@ -83,7 +83,7 @@ const Match = () => {
       setAllQueriesCompleted(false)
     }
   },[allQueriesCompleted, type, ouid])
-  
+  console.log(matchDetails)
   return (
     <>
       <Header/>
@@ -104,7 +104,7 @@ const Match = () => {
                 <MatchListContainer fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
               </>
             ) : 
-              ((!isInitLoading && allQueriesCompleted && matchDetails.length === 0) && 
+              ((!isInitLoading && matchDetails.length === 0 && allMatchInfo.length === 0) && 
                 <Wrapper>
                   <h1>최근 1달 전적이 없습니다.</h1>
                 </Wrapper>
