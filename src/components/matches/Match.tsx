@@ -76,6 +76,7 @@ const Match = () => {
       const allMatchDetailsData = matchDetails.map(query => query.data);
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allQueriesCompleted,dispatch]);
 
   useEffect(() => {

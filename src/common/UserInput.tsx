@@ -57,6 +57,7 @@ const UserInput = () => {
 
   useEffect(() => {
     setValue('user', keyBoardIdx !== null ? prevSearched[keyBoardIdx] : '')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyBoardIdx, setValue]);
   
   return (

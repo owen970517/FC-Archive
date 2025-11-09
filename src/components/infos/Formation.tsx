@@ -24,7 +24,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
   const [seasonplayers,setSeasonPlayers] = useState<ISpid[]>([]);
   const [playerName, setPlayerName] = useState('');
   const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});  
-  const { starting, starting_sort, maxRatingPlayer } = useMemo(() => {
+  const { starting_sort, maxRatingPlayer } = useMemo(() => {
     const filteredPlayers = player.filter((d) => d.status.spRating > 0 && d.spPosition !== 28);
     const sortedPlayers = filteredPlayers.sort((a,b) => b.spPosition - a.spPosition);
     
