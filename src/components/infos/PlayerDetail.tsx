@@ -23,7 +23,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     useEffect(() => {
         const fetchSeasonIdData = async () => {
           try {
-            const response = await fetch('https://open.api.nexon.com/static/fconline/meta/seasonid.json');
+            const response = await fetch('/seasonid.json');
             const data = await response.json();
             setSeason(data);
           } catch (error) {
@@ -39,7 +39,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     }
 
     const now = season.find((s) => s.seasonId === Number(String(player.spId).slice(0,3)))
-    
+      
   return (
     <S.PlayerWrapper>
         <S.Close src={CloseBtn} alt='close' onClick={handleClose}/>
@@ -48,7 +48,6 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
                 <S.PlayerImage 
                     src={imgUrl}
                     onError={() => handleImgError(player.spId)}
-                    loading='lazy'
                 />
             </S.PlayerImageWrapper>
             <h3>{name ? name : ''}</h3>

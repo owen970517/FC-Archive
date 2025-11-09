@@ -62,7 +62,7 @@ const Formation = ({player}:{player:IPlayer[]}) => {
 
   const fetchPlayersData = async () => {
     try {
-      const response = await fetch('https://open.api.nexon.com/static/fconline/meta/spid.json');
+      const response = await fetch('/spid.json');
       const data = await response.json();
       setSeasonPlayers(data);
     } catch (error) {
