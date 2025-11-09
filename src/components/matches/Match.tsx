@@ -39,7 +39,7 @@ const Match = () => {
       }
     }
     updateOuid();
-  }, [name]);
+  }, [name,dispatch,ouid]);
 
   const {
     data: matchIdsData,
@@ -76,14 +76,14 @@ const Match = () => {
       const allMatchDetailsData = matchDetails.map(query => query.data);
       dispatch(matchActions.setAllMatchInfo(allMatchDetailsData));
     }
-  }, [allQueriesCompleted]);
+  }, [allQueriesCompleted,dispatch]);
 
   useEffect(() => {
     if (allQueriesCompleted) {
       setAllQueriesCompleted(false)
     }
   },[allQueriesCompleted, type, ouid])
-  console.log(matchDetails)
+  
   return (
     <>
       <Header/>
@@ -104,7 +104,7 @@ const Match = () => {
                 <MatchListContainer fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isFetchingNextPage={isFetchingNextPage} />
               </>
             ) : 
-              ((!isInitLoading && matchDetails.length === 0 && allMatchInfo.length === 0) && 
+              ((!isInitLoading && matchIds && matchDetails.length === 0 && allMatchInfo.length === 0) && 
                 <Wrapper>
                   <h1>최근 1달 전적이 없습니다.</h1>
                 </Wrapper>

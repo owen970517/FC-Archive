@@ -61,8 +61,8 @@ export const Player = styled.div`
     &.GK { bottom :0; left:50%; transform:translate(-50%,-50%);}
 
     @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 
     &.ST { top: 8%; left: 50%; }
     &.LS { top: 8%; left: 30%; }
@@ -95,9 +95,9 @@ export const Player = styled.div`
 `
 
 export const PlayerImage = styled.img`
-    width : 100%;
-    height: 100%;
-    object-fit: cover;
+  width : 100%;
+  height: 100%;
+  object-fit: cover;
 `
 
 export const PlayerName = styled.span`
@@ -135,7 +135,7 @@ export const PlayerName = styled.span`
   &.GK { bottom: 2%; left: 50%; transform: translate(-50%, 50%); }
 
   @media (max-width: 768px) {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 800;
     &.ST { top: 13%; left: 50%; }
     &.LS { top: 13%; left: 30%; }

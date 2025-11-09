@@ -57,7 +57,7 @@ const UserInput = () => {
 
   useEffect(() => {
     setValue('user', keyBoardIdx !== null ? prevSearched[keyBoardIdx] : '')
-  }, [keyBoardIdx]);
+  }, [keyBoardIdx, setValue]);
   
   return (
     <SearchContainer>

@@ -23,7 +23,7 @@ const PlayerDetail = ({player,formation,name} : {player:IPlayer,formation:string
     useEffect(() => {
         const fetchSeasonIdData = async () => {
           try {
-            const response = await fetch('/seasonid.json');
+            const response = await fetch('https://open.api.nexon.com/static/fconline/meta/seasonid.json');
             const data = await response.json();
             setSeason(data);
           } catch (error) {
